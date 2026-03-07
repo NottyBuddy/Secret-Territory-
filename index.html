@@ -93,6 +93,7 @@ text-align:center;
 .mood-img{width:160px;height:190px;display:block;margin:auto;margin-bottom:6px;transition:0.25s;}
 .mood-card:hover .mood-img{transform:scale(1.2);filter:drop-shadow(0 0 6px #ff0033);}
 .mood-card p{margin:0;font-size:14px;}
+.mood-card span.msg-text{display:block;font-size:11px;color:#aaa;margin-top:4px;}
 .mood-icon{font-size:34px;display:block;margin-bottom:6px;}
 .sel-btn{padding:8px 18px;border:none;border-radius:40px;margin:5px;cursor:pointer;background:#333;color:#aaa;}
 .sel-btn.active{background:var(--hot-red);color:white;}
@@ -126,10 +127,26 @@ text-align:center;
 <div class="choice-box">
 <h3>Sweet Cravings</h3>
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Hug','🤗','Bbby i want a tight Hug 🤗')"><img src="hug.png" class="mood-img"><p>Hug</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Kiss','😘','Bbby i want a deep Kiss 😘')"><img src="kiss.png" class="mood-img"><p>Kiss</p></div>
-<div class="mood-card" onclick="sendMsgCustom('MissYou','🥺','Bbby i miss you so much  🥺')"><img src="miss.png" class="mood-img"><p>Miss You</p></div>
-<div class="mood-card" onclick="sendMsgCustom('CallMe','📞','Bbby Call Me wanna talk 📞')"><img src="call.png" class="mood-img"><p>Call Me</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Hug','🤗','Bbby i want a tight Hug 🤗')">
+<img src="hug.png" class="mood-img">
+<p>Hug</p>
+<span class="msg-text">Message: Bbby i want a tight Hug 🤗</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Kiss','😘','Bbby i want a deep Kiss 😘')">
+<img src="kiss.png" class="mood-img">
+<p>Kiss</p>
+<span class="msg-text">Message: Bbby i want a deep Kiss 😘</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('MissYou','🥺','Bbby i miss you so much 🥺')">
+<img src="miss.png" class="mood-img">
+<p>Miss You</p>
+<span class="msg-text">Message: Bbby i miss you so much 🥺</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('CallMe','📞','Bbby Call Me wanna talk 📞')">
+<img src="call.png" class="mood-img">
+<p>Call Me</p>
+<span class="msg-text">Message: Bbby Call Me wanna talk 📞</span>
+</div>
 </div>
 </div>
 
@@ -137,10 +154,26 @@ text-align:center;
 <div class="choice-box">
 <h3>Positions</h3>
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Missionary Position','🔥','I would like to do Missionary Position with you 🔥')"><img src="missionary.png" class="mood-img"><p>Missionary</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Doggy Style','🔥','I would like to do Doggy Style with you 🔥')"><img src="doggy.png" class="mood-img"><p>Behind</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Cowgirl Position','🔥','I would like to do Cowgirl Position with you 🔥')"><img src="cowgirl.png" class="mood-img"><p>On Top</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Lotus Position','🔥','I would like to do Lotus Position with you 🔥')"><img src="lotus.png" class="mood-img"><p>Deep Lotus</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Missionary Position','🔥','I would like to do Missionary Position with you 🔥')">
+<img src="missionary.png" class="mood-img">
+<p>Missionary</p>
+<span class="msg-text">Message: I would like to do Missionary Position with you 🔥</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Doggy Style','🔥','I would like to do Doggy Style with you 🔥')">
+<img src="doggy.png" class="mood-img">
+<p>Behind</p>
+<span class="msg-text">Message: I would like to do Doggy Style with you 🔥</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Cowgirl Position','🔥','I would like to do Cowgirl Position with you 🔥')">
+<img src="cowgirl.png" class="mood-img">
+<p>On Top</p>
+<span class="msg-text">Message: I would like to do Cowgirl Position with you 🔥</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Lotus Position','🔥','I would like to do Lotus Position with you 🔥')">
+<img src="lotus.png" class="mood-img">
+<p>Deep Lotus</p>
+<span class="msg-text">Message: I would like to do Lotus Position with you 🔥</span>
+</div>
 </div>
 </div>
 
@@ -148,10 +181,26 @@ text-align:center;
 <div class="choice-box">
 <h3>Video Call Dares</h3>
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Slow Tease','🔥','Bbby i want you to tease me slowly🔥')"><span class="mood-icon">🫦</span><p>Tease Me</p></div>
-<div class="mood-card" onclick="sendMsgCustom('One Item Off','🔥','Bbby i want your One Cloth off 🔥')"><span class="mood-icon">👗</span><p>One Item Off</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Special View','🔥','Bbby i want your special View 🔥')"><span class="mood-icon">👀</span><p>Special View</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Secret Dare','🔥','Bbby i want to see you in No innerwear for 1 hour 🔥')"><span class="mood-icon">😈</span><p>Secret Dare</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Slow Tease','🔥','Bbby i want you to tease me slowly🔥')">
+<span class="mood-icon">🫦</span>
+<p>Tease Me</p>
+<span class="msg-text">Message: Bbby i want you to tease me slowly🔥</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('One Item Off','🔥','Bbby i want your One Cloth off 🔥')">
+<span class="mood-icon">👗</span>
+<p>One Item Off</p>
+<span class="msg-text">Message: Bbby i want your One Cloth off 🔥</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Special View','🔥','Bbby i want your special View 🔥')">
+<span class="mood-icon">👀</span>
+<p>Special View</p>
+<span class="msg-text">Message: Bbby i want your special View 🔥</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Secret Dare','🔥','Bbby i want to see you in No innerwear for 1 hour 🔥')">
+<span class="mood-icon">😈</span>
+<p>Secret Dare</p>
+<span class="msg-text">Message: Bbby i want to see you in No innerwear for 1 hour 🔥</span>
+</div>
 </div>
 </div>
 
@@ -162,8 +211,16 @@ text-align:center;
 <button class="secret-btn" onclick="checkSecret()">Unlock Secret</button>
 <div id="secretContent" style="display:none;margin-top:10px;">
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Fantasy Dare','💋','Talk about your fantasy for 30 mins 💋')"><span class="mood-icon">💋</span><p>30 min Dare</p></div>
-<div class="mood-card" onclick="sendMsgCustom('Mirror Selfie','📸','Send mirror selfie now 📸')"><span class="mood-icon">📸</span><p>Mirror Selfie</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Fantasy Dare','💋','Talk about your fantasy for 30 mins 💋')">
+<span class="mood-icon">💋</span>
+<p>30 min Dare</p>
+<span class="msg-text">Message: Talk about your fantasy for 30 mins 💋</span>
+</div>
+<div class="mood-card" onclick="sendMsgCustom('Mirror Selfie','📸','Send mirror selfie now 📸')">
+<span class="mood-icon">📸</span>
+<p>Mirror Selfie</p>
+<span class="msg-text">Message: Send mirror selfie now 📸</span>
+</div>
 </div>
 </div>
 </div>
