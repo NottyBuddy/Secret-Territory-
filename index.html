@@ -93,6 +93,7 @@ text-align:center;
 .mood-img{width:160px;height:190px;display:block;margin:auto;margin-bottom:6px;transition:0.25s;}
 .mood-card:hover .mood-img{transform:scale(1.2);filter:drop-shadow(0 0 6px #ff0033);}
 .mood-card p{margin:0;font-size:14px;}
+.mood-icon{font-size:34px;display:block;margin-bottom:6px;}
 .sel-btn{padding:8px 18px;border:none;border-radius:40px;margin:5px;cursor:pointer;background:#333;color:#aaa;}
 .sel-btn.active{background:var(--hot-red);color:white;}
 .history-box{background:#0b0b0b;border:1px solid #333;border-radius:12px;padding:10px;max-height:150px;overflow:auto;text-align:left;font-size:13px;}
@@ -125,10 +126,10 @@ text-align:center;
 <div class="choice-box">
 <h3>Sweet Cravings</h3>
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsg('Hug','🤗')"><img src="hug.png" class="mood-img"><p>Hug</p></div>
-<div class="mood-card" onclick="sendMsg('Kiss','😘')"><img src="kiss.png" class="mood-img"><p>Kiss</p></div>
-<div class="mood-card" onclick="sendMsg('MissYou','🥺')"><img src="miss.png" class="mood-img"><p>Miss You</p></div>
-<div class="mood-card" onclick="sendMsg('CallMe','📞')"><img src="call.png" class="mood-img"><p>Call Me</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Hug','🤗','Bbby i want a tight Hug 🤗')"><img src="hug.png" class="mood-img"><p>Hug</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Kiss','😘','Bbby i want a deep Kiss 😘')"><img src="kiss.png" class="mood-img"><p>Kiss</p></div>
+<div class="mood-card" onclick="sendMsgCustom('MissYou','🥺','Bbby i miss you so much  🥺')"><img src="miss.png" class="mood-img"><p>Miss You</p></div>
+<div class="mood-card" onclick="sendMsgCustom('CallMe','📞','Bbby Call Me wanna talk 📞')"><img src="call.png" class="mood-img"><p>Call Me</p></div>
 </div>
 </div>
 
@@ -136,10 +137,10 @@ text-align:center;
 <div class="choice-box">
 <h3>Positions</h3>
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsg('Missionary Position','🔥')"><img src="missionary.png" class="mood-img"><p>Missionary</p></div>
-<div class="mood-card" onclick="sendMsg('Doggy Style','🔥')"><img src="doggy.png" class="mood-img"><p>Behind</p></div>
-<div class="mood-card" onclick="sendMsg('Cowgirl Position','🔥')"><img src="cowgirl.png" class="mood-img"><p>On Top</p></div>
-<div class="mood-card" onclick="sendMsg('Lotus Position','🔥')"><img src="lotus.png" class="mood-img"><p>Deep Lotus</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Missionary Position','🔥','I would like to do Missionary Position with you 🔥')"><img src="missionary.png" class="mood-img"><p>Missionary</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Doggy Style','🔥','I would like to do Doggy Style with you 🔥')"><img src="doggy.png" class="mood-img"><p>Behind</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Cowgirl Position','🔥','I would like to do Cowgirl Position with you 🔥')"><img src="cowgirl.png" class="mood-img"><p>On Top</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Lotus Position','🔥','I would like to do Lotus Position with you 🔥')"><img src="lotus.png" class="mood-img"><p>Deep Lotus</p></div>
 </div>
 </div>
 
@@ -147,10 +148,10 @@ text-align:center;
 <div class="choice-box">
 <h3>Video Call Dares</h3>
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsg('VCDare','🔥','Slow Tease')"><span class="mood-icon">🫦</span><p>Tease Me</p></div>
-<div class="mood-card" onclick="sendMsg('VCDare','🔥','One Item Off')"><span class="mood-icon">👗</span><p>One Item Off</p></div>
-<div class="mood-card" onclick="sendMsg('VCDare','🔥','Special View')"><span class="mood-icon">👀</span><p>Special View</p></div>
-<div class="mood-card" onclick="sendMsg('VCDare','🔥','No innerwear for 1 hour')"><span class="mood-icon">😈</span><p>Secret Dare</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Slow Tease','🔥','Bbby i want you to tease me slowly🔥')"><span class="mood-icon">🫦</span><p>Tease Me</p></div>
+<div class="mood-card" onclick="sendMsgCustom('One Item Off','🔥','Bbby i want your One Cloth off 🔥')"><span class="mood-icon">👗</span><p>One Item Off</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Special View','🔥','Bbby i want your special View 🔥')"><span class="mood-icon">👀</span><p>Special View</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Secret Dare','🔥','Bbby i want to see you in No innerwear for 1 hour 🔥')"><span class="mood-icon">😈</span><p>Secret Dare</p></div>
 </div>
 </div>
 
@@ -161,8 +162,8 @@ text-align:center;
 <button class="secret-btn" onclick="checkSecret()">Unlock Secret</button>
 <div id="secretContent" style="display:none;margin-top:10px;">
 <div class="action-grid">
-<div class="mood-card" onclick="sendMsg('Command','💋','Talk about your fantasy 30 mins')"><span class="mood-icon">💋</span><p>30 min Dare</p></div>
-<div class="mood-card" onclick="sendMsg('Command','📸','Send mirror selfie now')"><span class="mood-icon">📸</span><p>Mirror Selfie</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Fantasy Dare','💋','Talk about your fantasy for 30 mins 💋')"><span class="mood-icon">💋</span><p>30 min Dare</p></div>
+<div class="mood-card" onclick="sendMsgCustom('Mirror Selfie','📸','Send mirror selfie now 📸')"><span class="mood-icon">📸</span><p>Mirror Selfie</p></div>
 </div>
 </div>
 </div>
@@ -181,7 +182,7 @@ const MUKKU_NUMBER="917000229362";
 const KHUSHI_NUMBER="917981245485";
 let sender="mukku";
 
-/* PASSWORD */
+/* LOCK SCREEN PASSWORD */
 function checkPass(){
 let pass=document.getElementById("passInput").value;
 if(pass==="Our Lust"){
@@ -198,14 +199,11 @@ document.getElementById("btn-mukku").classList.toggle("active",user==="mukku");
 document.getElementById("btn-khushi").classList.toggle("active",user==="khushi");
 }
 
-/* WHATSAPP MESSAGE LOGIC */
-function sendMsg(type,emoji,taskName=""){
+/* CUSTOM WHATSAPP MESSAGE */
+function sendMsgCustom(taskName, emoji, customMessage){
 let target=(sender==="mukku")?KHUSHI_NUMBER:MUKKU_NUMBER;
-let message="";
-if(taskName!==""){message=`Bbby i wanna ${taskName} ${emoji}`;}
-else{message=`Bbby i want ${type} ${emoji}`;}
-saveHistory(sender,type);
-window.open(`https://wa.me/${target}?text=${encodeURIComponent(message)}`,"_blank");
+saveHistory(sender, taskName);
+window.open(`https://wa.me/${target}?text=${encodeURIComponent(customMessage + " " + emoji)}`,"_blank");
 }
 
 /* SECRET PASSWORD CHECK */
@@ -248,4 +246,4 @@ renderHistory();
 </script>
 
 </body>
-</html>
+  </html>
