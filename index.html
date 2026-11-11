@@ -1,306 +1,108 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Vault 🔥</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#09070b">
+<meta name="description" content="A private little world for two.">
+<title>Secret Territory — Our Little World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
---sea-green:#20b2aa;
---hot-red:#ff0033;
---dark-bg:#0d0d0d;
---card-bg:rgba(255,255,255,0.07);
-}
-body{
-background:var(--dark-bg);
-color:white;
-font-family:Segoe UI,sans-serif;
-margin:0;
-padding:15px;
-text-align:center;
-}
-
-/* LOCK SCREEN */
-#lockscreen{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#0a0a0a;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-#lockscreen h1{
-color:#ff0033;
-font-size:34px;
-text-shadow:0 0 12px #ff0033;
-}
-.lock-msg{
-color:#aaa;
-margin-bottom:20px;
-}
-#passInput{
-padding:12px;
-border-radius:8px;
-border:1px solid #ff0033;
-background:#111;
-color:white;
-text-align:center;
-margin-bottom:10px;
-width:80%;
-}
-#lockscreen button{
-padding:10px 20px;
-border:none;
-border-radius:8px;
-background:#ff0033;
-color:white;
-cursor:pointer;
-}
-#error{
-color:#ff4444;
-margin-top:8px;
-}
-
-/* MAIN PAGE */
-.container{max-width:500px;margin:auto;}
-h1{color:var(--hot-red);margin-bottom:8px;}
-.choice-box{
-background:var(--card-bg);
-border:1px solid var(--sea-green);
-border-radius:15px;
-padding:15px;
-margin-bottom:20px;
-}
-.action-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-.mood-card{
-background:rgba(255,255,255,0.05);
-border-radius:12px;
-padding:15px;
-cursor:pointer;
-transition:0.2s;
-text-align:center;
-}
-.mood-card:active{transform:scale(0.95);}
-.mood-img{width:160px;height:190px;display:block;margin:auto;margin-bottom:6px;transition:0.25s;}
-.mood-card:hover .mood-img{transform:scale(1.2);filter:drop-shadow(0 0 6px #ff0033);}
-.mood-card p{margin:0;font-size:14px;}
-.mood-card span.msg-text{display:block;font-size:11px;color:#aaa;margin-top:4px;}
-.mood-icon{font-size:34px;display:block;margin-bottom:6px;}
-.sel-btn{padding:8px 18px;border:none;border-radius:40px;margin:5px;cursor:pointer;background:#333;color:#aaa;}
-.sel-btn.active{background:var(--hot-red);color:white;}
-.history-box{background:#0b0b0b;border:1px solid #333;border-radius:12px;padding:10px;max-height:150px;overflow:auto;text-align:left;font-size:13px;}
-.history-item{border-bottom:1px solid #222;padding:5px 0;}
-.clear-btn{margin-top:8px;padding:6px 10px;font-size:12px;border:none;border-radius:6px;background:#444;color:white;cursor:pointer;}
-.secret-box{border:1px dashed #ff0033;padding:12px;margin-top:15px;}
-.secret-btn{padding:10px 12px;border:none;border-radius:8px;background:#ff0033;color:white;cursor:pointer;margin-top:8px;}
-#secretPass{padding:12px;border-radius:8px;border:1px solid #ff0033;background:#111;color:white;text-align:center;margin-bottom:10px;width:80%;}
+:root{--bg:#09070b;--panel:rgba(27,20,29,.78);--panel2:#17111b;--line:rgba(244,204,220,.13);--rose:#e9a9bd;--rose2:#b76b89;--cream:#f7eaf0;--muted:#ad9eaa;--gold:#c9a878;--shadow:0 22px 70px #0008}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--cream);font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse at 12% 0%,#48223855,transparent 35%),radial-gradient(ellipse at 90% 22%,#34213f66,transparent 32%),var(--bg);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#f5dbe7 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+.ambient{position:fixed;width:340px;height:340px;border-radius:50%;filter:blur(100px);opacity:.15;pointer-events:none;animation:drift 16s ease-in-out infinite alternate;background:#bd6689;top:25%;left:-190px}.ambient.two{background:#8064aa;left:auto;right:-210px;top:60%;animation-delay:-7s}
+@keyframes drift{to{transform:translate(90px,-60px) scale(1.25)}}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{50%{box-shadow:0 0 0 9px #e9a9bd10,0 0 35px #e9a9bd22}}@keyframes shimmer{to{background-position:200% center}}
+button,input,textarea{font:inherit}button{touch-action:manipulation}
+#lockscreen{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at center,#382033 0,#100b13 48%,#080609 100%);transition:opacity .55s,visibility .55s}
+#lockscreen.hidden{opacity:0;visibility:hidden;pointer-events:none}.lock-card{width:min(100%,420px);text-align:center;padding:42px 28px;border:1px solid #f2c7d52b;border-radius:28px;background:#170f1bd9;box-shadow:var(--shadow);backdrop-filter:blur(20px);animation:rise .8s both}
+.lock-mark{font-size:34px;color:var(--rose);animation:pulse 3s infinite}.eyebrow{letter-spacing:.24em;text-transform:uppercase;font-size:10px;color:var(--gold);font-weight:700}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif;font-weight:500}#lockscreen h1{font-size:clamp(36px,9vw,48px);margin:14px 0 8px}.sub{color:var(--muted);font-size:13px;line-height:1.7}
+.field{width:100%;border:1px solid var(--line);background:#0c090f;color:var(--cream);padding:15px 16px;border-radius:14px;outline:none;text-align:center;margin:18px 0 12px}.field:focus,textarea:focus{border-color:#d68da9;box-shadow:0 0 0 3px #d68da91c}
+.btn{border:1px solid transparent;border-radius:999px;padding:12px 20px;color:#1b1018;background:linear-gradient(120deg,#f2cbd8,#c9819f,#f2cbd8);background-size:200% auto;font-weight:700;cursor:pointer;transition:transform .22s,box-shadow .22s,background-position .5s;box-shadow:0 8px 25px #c9819f22}.btn:hover{transform:translateY(-2px);background-position:right center;box-shadow:0 12px 30px #c9819f40}.btn:active{transform:scale(.97)}.btn.ghost{background:#ffffff08;border-color:var(--line);color:var(--cream);box-shadow:none}.btn.small{padding:9px 15px;font-size:12px}
+#error{color:#ff9eae;min-height:18px;font-size:12px}
+main{width:min(100% - 32px,980px);margin:auto;padding:32px 0 70px;position:relative}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:36px}.brand{font-family:'Playfair Display',serif;font-size:19px;letter-spacing:.04em}.brand span{color:var(--rose)}.status{font-size:10px;color:var(--muted);border:1px solid var(--line);padding:8px 11px;border-radius:99px;background:#ffffff06}
+.hero{text-align:center;padding:26px 0 38px;animation:rise .8s both}.hero .eyebrow{margin-bottom:14px}.hero h1{font-size:clamp(43px,8vw,76px);line-height:1.02;margin:0;letter-spacing:-.035em}.hero h1 em{font-style:normal;color:var(--rose)}.hero p{max-width:480px;margin:18px auto 22px;color:var(--muted);line-height:1.8;font-size:14px}
+.user-switch{display:inline-flex;gap:4px;padding:5px;border:1px solid var(--line);background:#ffffff08;border-radius:999px}.user-switch button{border:0;background:transparent;color:var(--muted);padding:9px 20px;border-radius:99px;font-size:12px;cursor:pointer}.user-switch button.active{background:#e9a9bd;color:#21121b;font-weight:700}
+.section{margin:26px 0 34px;animation:rise .7s both}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:14px;gap:12px}.section-head h2{font-size:25px;margin:0}.section-head p{font-size:11px;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.card{position:relative;min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,#ffffff0b,#ffffff03);padding:14px;text-align:left;cursor:pointer;transition:transform .28s,border-color .28s,background .28s;min-height:160px}.card:hover{transform:translateY(-5px);border-color:#e9a9bd75;background:linear-gradient(145deg,#e9a9bd18,#ffffff05)}.card:active{transform:scale(.97)}.card img{width:100%;height:112px;object-fit:contain;display:block;margin:0 auto 10px;filter:drop-shadow(0 8px 16px #0007);transition:transform .35s}.card:hover img{transform:scale(1.06)}.card .emoji{font-size:35px;height:112px;display:grid;place-items:center}.card strong{display:block;font-size:13px;font-weight:600}.card small{display:block;color:var(--muted);font-size:10px;line-height:1.5;margin-top:5px}.card .arrow{position:absolute;right:13px;top:13px;color:var(--rose);font-size:15px}
+.panel{border:1px solid var(--line);border-radius:22px;padding:22px;background:var(--panel);backdrop-filter:blur(18px);box-shadow:0 12px 45px #0002}.secret-panel{border-color:#c9a87845;background:linear-gradient(135deg,#241a20e8,#15101aee)}.secret-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.secret-row .field{flex:1;min-width:150px;margin:0;text-align:left}.secret-content{display:none;margin-top:20px}.secret-content.open{display:block;animation:rise .4s both}.secret-content .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+textarea{width:100%;min-height:100px;resize:vertical;background:#0c090f;color:var(--cream);border:1px solid var(--line);border-radius:14px;padding:14px;outline:none}.note-actions{display:flex;justify-content:flex-end;margin-top:10px}
+.history{display:grid;gap:8px;max-height:230px;overflow:auto}.history-item{display:flex;justify-content:space-between;gap:12px;padding:11px 13px;background:#ffffff06;border:1px solid #ffffff0b;border-radius:12px;font-size:12px}.history-item span:last-child{color:var(--muted);white-space:nowrap;font-size:10px}.empty{color:var(--muted);font-size:12px;padding:12px}
+.footer{text-align:center;padding:34px 0 0;color:#827481;font-size:11px}.toast{position:fixed;z-index:30;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#261b29;border:1px solid #e9a9bd55;color:var(--cream);padding:12px 18px;border-radius:99px;font-size:12px;transition:.3s;box-shadow:var(--shadow);max-width:calc(100% - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){main{width:min(100% - 24px,560px);padding-top:20px}.topbar{margin-bottom:22px}.hero{padding:20px 0 28px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{min-height:150px;padding:12px}.card img,.card .emoji{height:96px}.section-head h2{font-size:22px}.panel{padding:17px}.secret-content .grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-
-<!-- LOCK SCREEN -->
-<div id="lockscreen">
-<h1>Love Vault 🔥</h1>
-<p class="lock-msg">Enter Password to unlock Our World</p>
-<input type="password" id="passInput" placeholder="********">
-<button onclick="checkPass()">Unlock Our Place</button>
-<p id="error"></p>
-</div>
-
-<!-- MAIN PAGE -->
-<div class="container">
-
-<h1>Love Vault 🔥</h1>
-<button id="btn-mukku" class="sel-btn active" onclick="setUser('mukku')">Mukku</button>
-<button id="btn-khushi" class="sel-btn" onclick="setUser('khushi')">Khushi</button>
-
-<!-- SWEET -->
-<div class="choice-box">
-<h3>Sweet Cravings</h3>
-<div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Hug','🤗','Bbby i want a tight Hug 🤗')">
-<img src="hug.png" class="mood-img">
-<p>Hug</p>
-<span class="msg-text">Message: Bbby i want a tight Hug 🤗</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Kiss','😘','Bbby i want a deep Kiss 😘')">
-<img src="kiss.png" class="mood-img">
-<p>Kiss</p>
-<span class="msg-text">Message: Bbby i want a deep Kiss 😘</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('MissYou','🥺','Bbby i miss you so much 🥺')">
-<img src="miss.png" class="mood-img">
-<p>Miss You</p>
-<span class="msg-text">Message: Bbby i miss you so much 🥺</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('CallMe','📞','Bbby Call Me wanna talk 📞')">
-<img src="call.png" class="mood-img">
-<p>Call Me</p>
-<span class="msg-text">Message: Bbby Call Me wanna talk 📞</span>
-</div>
-</div>
-</div>
-
-<!-- POSITIONS -->
-<div class="choice-box">
-<h3>Positions</h3>
-<div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Missionary Position','🔥','I would like to do Missionary Position with you 🔥')">
-<img src="missionary.png" class="mood-img">
-<p>Missionary</p>
-<span class="msg-text">Message: I would like to do Missionary Position with you 🔥</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Doggy Style','🔥','I would like to do Doggy Style with you 🔥')">
-<img src="doggy.png" class="mood-img">
-<p>Behind</p>
-<span class="msg-text">Message: I would like to do Doggy Style with you 🔥</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Cowgirl Position','🔥','I would like to do Cowgirl Position with you 🔥')">
-<img src="cowgirl.png" class="mood-img">
-<p>On Top</p>
-<span class="msg-text">Message: I would like to do Cowgirl Position with you 🔥</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Lotus Position','🔥','I would like to do Lotus Position with you 🔥')">
-<img src="lotus.png" class="mood-img">
-<p>Deep Lotus</p>
-<span class="msg-text">Message: I would like to do Lotus Position with you 🔥</span>
-</div>
-</div>
-</div>
-
-<!-- VIDEO DARES -->
-<div class="choice-box">
-<h3>Video Call Dares</h3>
-<div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Slow Tease','🔥','Bbby i want you to tease me slowly🔥')">
-<span class="mood-icon">🫦</span>
-<p>Tease Me</p>
-<span class="msg-text">Message: Bbby i want you to tease me slowly🔥</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('One Item Off','🔥','Bbby i want your One Cloth off 🔥')">
-<span class="mood-icon">👗</span>
-<p>One Item Off</p>
-<span class="msg-text">Message: Bbby i want your One Cloth off 🔥</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Special View','🔥','Bbby i want your special View 🔥')">
-<span class="mood-icon">👀</span>
-<p>Special View</p>
-<span class="msg-text">Message: Bbby i want your special View 🔥</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Secret Dare','🔥','Bbby i want to see you in No innerwear for 1 hour 🔥')">
-<span class="mood-icon">😈</span>
-<p>Secret Dare</p>
-<span class="msg-text">Message: Bbby i want to see you in No innerwear for 1 hour 🔥</span>
-</div>
-</div>
-</div>
-
-<!-- SECRET SECTION -->
-<div class="choice-box secret-box">
-<h3>Secret Commands 🔐</h3>
-<input type="password" id="secretPass" placeholder="Enter Secret Password 🔥">
-<button class="secret-btn" onclick="checkSecret()">Unlock Secret</button>
-<div id="secretContent" style="display:none;margin-top:10px;">
-<div class="action-grid">
-<div class="mood-card" onclick="sendMsgCustom('Fantasy Dare','💋','Talk about your fantasy for 30 mins 💋')">
-<span class="mood-icon">💋</span>
-<p>30 min Dare</p>
-<span class="msg-text">Message: Talk about your fantasy for 30 mins 💋</span>
-</div>
-<div class="mood-card" onclick="sendMsgCustom('Mirror Selfie','📸','Send mirror selfie now 📸')">
-<span class="mood-icon">📸</span>
-<p>Mirror Selfie</p>
-<span class="msg-text">Message: Send mirror selfie now 📸</span>
-</div>
-</div>
-</div>
-</div>
-
-<!-- HISTORY -->
-<div class="choice-box">
-<h3>Selection History</h3>
-<div id="history" class="history-box"></div>
-<button class="clear-btn" onclick="clearHistory()">Clear History</button>
-</div>
-
-</div>
-
+<div class="ambient"></div><div class="ambient two"></div>
+<div id="lockscreen"><div class="lock-card"><div class="lock-mark">✦</div><div class="eyebrow">A place just for us</div><h1>Secret <span style="color:var(--rose)">Territory</span></h1><p class="sub">Some worlds are better when they're shared by two.<br>Enter our little secret.</p><input class="field" id="passInput" type="password" placeholder="Our passcode" autocomplete="current-password"><button class="btn" id="unlockBtn">Enter our world&nbsp; ↗</button><p id="error"></p></div></div>
+<main>
+<header class="topbar"><div class="brand">SECRET <span>TERRITORY</span> ✦</div><div class="status" id="syncStatus">● Private mode · This device</div></header>
+<section class="hero"><div class="eyebrow">Est. in our own little universe</div><h1>Our little <em>world.</em></h1><p>A little romance, a little mischief, and a thousand ways to say what's on your mind. Made for us, and only us.</p><div class="user-switch"><button id="btn-mukku" class="active">Mukku</button><button id="btn-khushi">Khushi</button></div></section>
+<section class="section"><div class="section-head"><div><div class="eyebrow">01 — Soft moments</div><h2>Sweet Cravings</h2></div><p>Little things, big feelings</p></div><div class="grid">
+<div class="card" data-task="Hug" data-message="Bbby i want a tight Hug 🤗"><span class="arrow">↗</span><img src="hug.png" alt="Hug"><strong>Need a hug</strong><small>Wrap me up in your arms</small></div>
+<div class="card" data-task="Kiss" data-message="Bbby i want a deep Kiss 😘"><span class="arrow">↗</span><img src="kiss.png" alt="Kiss"><strong>Steal a kiss</strong><small>One kiss, then one more</small></div>
+<div class="card" data-task="Miss You" data-message="Bbby i miss you so much 🥺"><span class="arrow">↗</span><img src="miss.png" alt="Miss you"><strong>Missing you</strong><small>Wish you were right here</small></div>
+<div class="card" data-task="Call Me" data-message="Bbby Call Me wanna talk 📞"><span class="arrow">↗</span><img src="call.png" alt="Call me"><strong>Call me</strong><small>Your voice is my favourite</small></div>
+</div></section>
+<section class="section"><div class="section-head"><div><div class="eyebrow">02 — Just us</div><h2>Our Chemistry</h2></div><p>Pick a playful mood</p></div><div class="grid">
+<div class="card" data-task="Missionary" data-message="I would like to do Missionary Position with you 🔥"><span class="arrow">↗</span><img src="missionary.png" alt="Missionary"><strong>Missionary</strong><small>Set the mood</small></div>
+<div class="card" data-task="Behind" data-message="I would like to try our behind position together 🔥"><span class="arrow">↗</span><img src="doggy.png" alt="Behind"><strong>Behind</strong><small>A little playful energy</small></div>
+<div class="card" data-task="On Top" data-message="I would like you to take the lead 🔥"><span class="arrow">↗</span><img src="cowgirl.png" alt="On top"><strong>On top</strong><small>Your turn to lead</small></div>
+<div class="card" data-task="Deep Lotus" data-message="Let's get close and enjoy a slow moment together 🔥"><span class="arrow">↗</span><img src="lotus.png" alt="Lotus"><strong>Deep Lotus</strong><small>Close, calm, connected</small></div>
+</div></section>
+<section class="section"><div class="section-head"><div><div class="eyebrow">03 — Play together</div><h2>Video Call Dares</h2></div><button class="btn ghost small" id="randomDare">Surprise me ✧</button></div><div class="grid">
+<div class="card" data-task="Slow Tease" data-message="Bbby i want you to tease me slowly 🔥"><span class="emoji">🫦</span><strong>Tease me</strong><small>Take your sweet time</small></div>
+<div class="card" data-task="One Item Off" data-message="Only if you're comfortable, let's make this call playful 😉"><span class="emoji">🎀</span><strong>One little reveal</strong><small>Only if you feel like it</small></div>
+<div class="card" data-task="Special View" data-message="I want a special little moment with you 👀"><span class="emoji">👀</span><strong>Special view</strong><small>A moment just for us</small></div>
+<div class="card" data-task="Secret Dare" data-message="Your choice: give me a cute secret dare 😈"><span class="emoji">😈</span><strong>Secret dare</strong><small>Your rules, your comfort</small></div>
+</div></section>
+<section class="section"><div class="panel secret-panel"><div class="eyebrow">04 — Behind the velvet door</div><h2 style="font-size:27px;margin:8px 0">The Private Vault <span style="color:var(--gold)">✦</span></h2><p class="sub">A little extra magic, unlocked by our secret code.</p><div class="secret-row"><input class="field" id="secretPass" type="password" placeholder="Vault passcode"><button class="btn small" id="secretUnlock">Unlock vault</button></div><div class="secret-content" id="secretContent"><div class="grid">
+<div class="card" data-task="Fantasy Talk" data-message="Let's share one fantasy or dream with each other 💋"><span class="emoji">💋</span><strong>Fantasy talk</strong><small>Tell me something you've imagined</small></div>
+<div class="card" data-task="Mirror Moment" data-message="Send me a mirror selfie, only if you feel like it 📸"><span class="emoji">📸</span><strong>Mirror moment</strong><small>A little snapshot from you</small></div>
+<div class="card" data-task="Truth or Dare" data-message="Let's play one round of truth or dare 💌"><span class="emoji">💌</span><strong>Truth or dare</strong><small>No pressure, just fun</small></div>
+<div class="card" data-task="Slow Dance" data-message="Pick a song and let's have a slow dance together 🎶"><span class="emoji">🎶</span><strong>Slow dance</strong><small>Our own little soundtrack</small></div>
+<div class="card" data-task="One Wish" data-message="Tell me one wish you'd love us to make real ✨"><span class="emoji">✨</span><strong>One wish</strong><small>Something we can look forward to</small></div>
+<div class="card" data-task="Surprise Me" data-message="Surprise me with something sweet 💗"><span class="emoji">🎁</span><strong>Surprise me</strong><small>Make me smile</small></div>
+</div><div style="margin-top:20px"><div class="eyebrow">A note from your heart</div><textarea id="loveNote" placeholder="Write a little note..."></textarea><div class="note-actions"><button class="btn small" id="sendNote">Send note on WhatsApp ↗</button></div></div></div></div></section>
+<section class="section"><div class="section-head"><div><div class="eyebrow">05 — Little reminders</div><h2>Our Moments</h2></div><button class="btn ghost small" id="clearHistory">Clear history</button></div><div class="panel"><div class="history" id="history"><div class="empty">Your moments will show up here.</div></div></div></section>
+<footer class="footer">Made with a little love, for two hearts. <span style="color:var(--rose)">♥</span><br><span style="opacity:.65">Secret Territory · Our private corner</span></footer>
+</main><div class="toast" id="toast"></div>
+<script src="config.js"></script>
 <script>
 const MUKKU_NUMBER="919009691696";
 const KHUSHI_NUMBER="917981245485";
-let sender="mukku";
-
-/* LOCK SCREEN PASSWORD */
-function checkPass(){
-let pass=document.getElementById("passInput").value;
-if(pass==="16-04-25"){
-document.getElementById("lockscreen").style.display="none";
-}else{
-document.getElementById("error").innerText="Wrong Password 💔";
-}
-}
-
-/* SELECT USER */
-function setUser(user){
-sender=user;
-document.getElementById("btn-mukku").classList.toggle("active",user==="mukku");
-document.getElementById("btn-khushi").classList.toggle("active",user==="khushi");
-}
-
-/* CUSTOM WHATSAPP MESSAGE */
-function sendMsgCustom(taskName, emoji, customMessage){
-let target=(sender==="mukku")?KHUSHI_NUMBER:MUKKU_NUMBER;
-saveHistory(sender, taskName);
-window.open(`https://wa.me/${target}?text=${encodeURIComponent(customMessage + " " + emoji)}`,"_blank");
-}
-
-/* SECRET PASSWORD CHECK */
-function checkSecret(){
-let sp=document.getElementById("secretPass").value;
-if(sp==="Us000000"){
-document.getElementById("secretContent").style.display="block";
-document.getElementById("secretPass").style.display="none";
-alert("Secret Unlocked 🔥");
-}else{
-alert("Wrong Password 💔");
-}
-}
-
-/* HISTORY */
-function saveHistory(user,action){
-let time=new Date().toLocaleTimeString();
-let entry=`${user} → ${action} (${time})`;
-let history=JSON.parse(localStorage.getItem("loveHistory")||"[]");
-history.unshift(entry);
-localStorage.setItem("loveHistory",JSON.stringify(history));
-renderHistory();
-}
-function renderHistory(){
-let history=JSON.parse(localStorage.getItem("loveHistory")||"[]");
-let box=document.getElementById("history");
-box.innerHTML="";
-history.slice(0,20).forEach(item=>{
-let div=document.createElement("div");
-div.className="history-item";
-div.textContent=item;
-box.appendChild(div);
-});
-}
-function clearHistory(){
-localStorage.removeItem("loveHistory");
-renderHistory();
-}
-renderHistory();
+const MAIN_PASSWORD="16-04-25";
+const VAULT_PASSWORD="Us000000";
+// Shared mode needs a Supabase project + table. Keep secrets out of this public file.
+// Add the project URL and anon key in a private config.js file (see README).
+let SUPABASE_URL="",SUPABASE_ANON_KEY="";
+try{const cfg=window.SECRET_TERRITORY_CONFIG||{};SUPABASE_URL=cfg.url||"";SUPABASE_ANON_KEY=cfg.anonKey||"";}catch(e){}
+let sender="mukku",vaultOpen=false;
+const $=id=>document.getElementById(id);
+function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2800)}
+function unlock(){if($("passInput").value===MAIN_PASSWORD){$("lockscreen").classList.add("hidden");sessionStorage.setItem("st-unlocked","1");}else{$("error").textContent="That doesn't look like our passcode. Try again.";}}
+$("unlockBtn").addEventListener("click",unlock);$("passInput").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+if(sessionStorage.getItem("st-unlocked")==="1")$("lockscreen").classList.add("hidden");
+function setUser(user){sender=user;$("btn-mukku").classList.toggle("active",user==="mukku");$("btn-khushi").classList.toggle("active",user==="khushi");}
+$("btn-mukku").addEventListener("click",()=>setUser("mukku"));$("btn-khushi").addEventListener("click",()=>setUser("khushi"));
+function targetNumber(){return sender==="mukku"?KHUSHI_NUMBER:MUKKU_NUMBER}
+function makeWhatsAppUrl(message){const number=String(targetNumber()).replace(/\D/g,"");if(!/^\d{10,15}$/.test(number)){toast("WhatsApp number looks invalid. Check the contact number.");return null;}return "https://wa.me/"+number+"?text="+encodeURIComponent(message)}
+function openWhatsApp(message){const url=makeWhatsAppUrl(message);if(!url)return;const win=window.open(url,"_blank","noopener,noreferrer");if(!win){toast("Opening WhatsApp…");window.location.href=url;}}
+function saveHistory(action){const item={user:sender,action,time:new Date().toISOString()};let list=JSON.parse(localStorage.getItem("st-history")||"[]");list.unshift(item);localStorage.setItem("st-history",JSON.stringify(list.slice(0,30)));renderHistory();if(SUPABASE_URL&&SUPABASE_ANON_KEY)syncHistory(item);}
+async function syncHistory(item){try{await fetch(SUPABASE_URL.replace(/\/$/,"")+"/rest/v1/moments",{method:"POST",headers:{apikey:SUPABASE_ANON_KEY,Authorization:"Bearer "+SUPABASE_ANON_KEY,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify(item)});$("syncStatus").textContent="● Shared moments · Connected";}catch(e){$("syncStatus").textContent="● Offline · Saved on this device";}}
+async function loadShared(){if(!SUPABASE_URL||!SUPABASE_ANON_KEY)return;try{const r=await fetch(SUPABASE_URL.replace(/\/$/,"")+"/rest/v1/moments?select=user,action,time&order=time.desc&limit=30",{headers:{apikey:SUPABASE_ANON_KEY,Authorization:"Bearer "+SUPABASE_ANON_KEY}});if(!r.ok)throw Error("sync");const data=await r.json();localStorage.setItem("st-history",JSON.stringify(data));renderHistory();$("syncStatus").textContent="● Shared moments · Connected";}catch(e){$("syncStatus").textContent="● Sync unavailable · Local mode";}}
+function renderHistory(){const list=JSON.parse(localStorage.getItem("st-history")||"[]");const box=$("history");box.innerHTML="";if(!list.length){box.innerHTML='<div class="empty">Your moments will show up here.</div>';return;}list.slice(0,30).forEach(item=>{const row=document.createElement("div");row.className="history-item";const label=document.createElement("span");label.textContent=(item.user==="mukku"?"Mukku":"Khushi")+" · "+item.action;const time=document.createElement("span");time.textContent=new Date(item.time).toLocaleString([], {month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});row.append(label,time);box.append(row);});}
+document.querySelectorAll(".card[data-task]").forEach(card=>card.addEventListener("click",()=>{const task=card.dataset.task;const msg=card.dataset.message;saveHistory(task);openWhatsApp(msg);}));
+$("secretUnlock").addEventListener("click",()=>{if($("secretPass").value===VAULT_PASSWORD){vaultOpen=true;$("secretContent").classList.add("open");$("secretPass").style.display="none";$("secretUnlock").style.display="none";toast("The Private Vault is open ✦");}else toast("That isn't the vault code.");});
+$("randomDare").addEventListener("click",()=>{const cards=[...document.querySelectorAll('.section')[2]?.querySelectorAll('.card') || []];const card=cards[Math.floor(Math.random()*cards.length)];if(card){card.scrollIntoView({behavior:"smooth",block:"center"});card.animate([{transform:"scale(1)"},{transform:"scale(1.04)"},{transform:"scale(1)"}],{duration:550});toast("Your surprise: "+card.querySelector("strong").textContent);}});
+$("sendNote").addEventListener("click",()=>{const note=$("loveNote").value.trim();if(!note){toast("Write a little note first 💗");return;}saveHistory("Love note");openWhatsApp("A little note from me 💌\n\n"+note);});
+$("clearHistory").addEventListener("click",()=>{localStorage.removeItem("st-history");renderHistory();toast("This device's history was cleared.");});
+renderHistory();loadShared();
 </script>
-
 </body>
-  </html>
+</html>
