@@ -246,23 +246,43 @@ body.is-locked>#sceneBackdrop{display:block!important;visibility:visible!importa
 body.is-locked>#lockscreen{display:flex!important;visibility:visible!important;pointer-events:auto!important;z-index:99999!important}
 #lockscreen{position:fixed!important;inset:0!important;z-index:99999!important}
 #lockscreen.hidden{display:none!important}
+
+/* PAGE-WISE APP LAYOUT + SINGLE VIDEO BACKGROUND ONLY */
+#sceneBackdrop{position:fixed!important;inset:0!important;z-index:-1!important;display:block!important;overflow:hidden!important;opacity:1!important;background:#100d10!important;pointer-events:none!important}
+#sceneBackdrop .site-background-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 46%!important;opacity:.9!important;filter:brightness(.98) saturate(1.1) contrast(1.04)!important}
+#sceneBackdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#10090b78 0%,#130b0c30 48%,#0b0c1268 100%),linear-gradient(180deg,#10090b18 0%,#10090b0a 45%,#10090b66 100%)!important;pointer-events:none}
+html,body{background:#100d10!important}body{position:relative;background-image:none!important}
+body:before,body:after,.ambient,.ambient.two{display:none!important;background:none!important}
+#lockscreen{position:fixed!important;inset:0!important;display:grid!important;place-items:center!important;align-content:center!important;justify-content:center!important;padding:20px!important;margin:0!important;background:linear-gradient(90deg,#10090b45,#130b0c20 50%,#0b0c1245)!important;backdrop-filter:none!important;z-index:99999!important}
+#lockscreen .lock-card{position:relative!important;margin:auto!important;transform:none!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:min(100%,390px)!important;max-height:calc(100dvh - 40px);overflow:auto}
+#lockscreen.hidden{display:none!important}
+.app-main{position:relative;z-index:1;background:transparent!important}
+.app-main>.section[hidden],.app-main>.hero[hidden],.quick-nav[hidden]{display:none!important}
+.app-main>.section{background:transparent!important;background-image:none!important;border:0!important;outline:0!important;box-shadow:none!important;backdrop-filter:none!important}
+.app-main>.section:before,.app-main>.section:after{display:none!important;background:none!important;content:none!important}
+.feature-box,.panel,.card,.memory-card,.game-card,.love-sidebar,.sidebar-couple{background:transparent!important;border-color:transparent!important;box-shadow:none!important;backdrop-filter:none!important}
+.love-sidebar{background:transparent!important;border:0!important;box-shadow:none!important}
+.love-sidebar .side-link{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+.love-sidebar .side-link:hover,.love-sidebar .side-link.current{background:rgba(180,42,65,.13)!important;border-color:transparent!important;box-shadow:0 0 20px #c12d4b25!important}
+body.is-locked>.love-sidebar,body.is-locked>.app-main,body.is-locked>.ambient,body.is-locked>.ambient.two{display:none!important}
+@media(max-width:720px){#sceneBackdrop .site-background-video{object-position:54% center!important}#lockscreen{padding:16px!important}}
 </style>
 </head>
 <body data-user="mukku" class="is-locked">
-<div class="scene-backdrop" id="sceneBackdrop" aria-hidden="true"><video id="siteBackgroundVideo" class="site-background-video" autoplay muted loop playsinline preload="metadata" poster="assets/scene-home.svg"><source src="https://raw.githubusercontent.com/NottyBuddy/Secret-Territory-/main/couple-bg.mp4" type="video/mp4"></video></div><div class="ambient"></div><div class="ambient two"></div>
+<div class="scene-backdrop" id="sceneBackdrop" aria-hidden="true"><video id="siteBackgroundVideo" class="site-background-video" autoplay muted loop playsinline preload="metadata"><source src="https://raw.githubusercontent.com/NottyBuddy/Secret-Territory-/main/couple-bg.mp4" type="video/mp4"></video></div>
 <div id="lockscreen"><div class="lock-card"><div class="lock-mark">✦</div><div class="eyebrow">A place just for us</div><h1>Secret <span style="color:var(--sea)">Territory</span></h1><p class="sub" id="loginIntro">Some worlds are better when they're shared by two.<br>Enter our little secret.</p>
 <div id="authFields" class="auth-fields"><input class="field" id="authEmail" type="email" placeholder="Email address" autocomplete="username"><input class="field" id="authPassword" type="password" placeholder="Password" autocomplete="current-password"><div class="auth-actions"><button class="btn" id="signInBtn">Sign in</button><button class="btn ghost" id="signUpBtn">Create account</button></div><p class="local-hint">Private cloud login is enabled for this setup.</p></div>
 <div id="localFields"><input class="field" id="passInput" type="password" placeholder="Our passcode" autocomplete="current-password"><button class="btn" id="unlockBtn">Enter our world&nbsp; ↗</button><p class="local-hint">Local preview mode · Configure Supabase Auth for secure shared access.</p></div><p id="error"></p></div></div>
 <aside class="love-sidebar" aria-label="Main navigation">
   <a class="sidebar-brand" href="#"><span class="brand-heart">♡</span><span>Secret <i>Territory</i><small>JUST US. ♡</small></span></a>
-  <nav><a class="side-link current" href="#"><span>⌂</span>Home</a><a class="side-link" href="#chemistry"><span>∞</span>Our World</a><a class="side-link" href="#memories"><span>▧</span>Memories</a><a class="side-link" href="#games"><span>♧</span>Games</a><a class="side-link" href="#vault"><span>♙</span>Vault</a><a class="side-link" href="#together"><span>⋯</span>More</a></nav>
+  <nav aria-label="Pages"><a class="side-link current" data-page="home" href="#home"><span>⌂</span>Home</a><a class="side-link" data-page="world" href="#world"><span>∞</span>Our World</a><a class="side-link" data-page="memories" href="#memories"><span>▧</span>Memories</a><a class="side-link" data-page="games" href="#games"><span>♧</span>Games</a><a class="side-link" data-page="vault" href="#vault"><span>♙</span>Vault</a><a class="side-link" data-page="more" href="#more"><span>⋯</span>More</a></nav>
   <div class="sidebar-couple"><div class="eyebrow">TOGETHER FOREVER ♡</div><div class="couple-profiles"><span class="profile-dot mukku-dot">M</span><b>∞</b><span class="profile-dot khushi-dot">K</span></div><div class="couple-names"><span>Mukku 💙</span><span>Khushi 💚</span></div><div class="heartbeat">⌁〰⌁♡⌁〰⌁</div></div>
   <div class="sidebar-footer"><span>♡</span><span>FOREVER IS BETTER WITH YOU</span></div>
 </aside>
 <main class="app-main">
 <header class="topbar"><div class="brand">SECRET <span>TERRITORY</span> ✦</div><div style="display:flex;gap:8px;align-items:center"><div class="status" id="syncStatus">● Local preview</div><button class="btn ghost small" id="privacyLock">Lock now</button><button class="btn ghost small" id="accountBtn" style="display:none">Account</button></div></header>
 <section class="hero"><div class="eyebrow">Two colours · one little universe</div><h1>Our little <em>world.</em></h1><p>A little romance, a little mischief, and a thousand ways to say what's on your mind. Made for us, and only us.</p><div class="user-switch"><button id="btn-mukku" class="active">Mukku</button><button id="btn-khushi">Khushi</button></div></section>
-<nav class="quick-nav" aria-label="Explore Secret Territory"><a href="#cravings">Sweet Cravings</a><a href="#games">Play together</a><a href="#date-night">Date night</a><a href="#vault">Private Vault</a><a href="#memories">Memories</a><a href="#together">Just between us</a></nav>
+<nav class="quick-nav" aria-label="Explore Secret Territory" hidden><a href="#cravings">Sweet Cravings</a><a href="#games">Play together</a><a href="#date-night">Date night</a><a href="#vault">Private Vault</a><a href="#memories">Memories</a><a href="#together">Just between us</a></nav>
 <section class="section" id="cravings"><div class="section-head"><div><div class="eyebrow">01 — Soft moments</div><h2>Sweet Cravings</h2></div><p>Little things, big feelings</p></div><div class="grid">
 <button class="card" data-task="Hug" data-message="Bbby i want a tight Hug 🤗"><span class="arrow">↗</span><img src="hug.png" alt="Hug"><strong>Need a hug</strong><small>Wrap me up in your arms</small></button>
 <button class="card" data-task="Kiss" data-message="Bbby i want a deep Kiss 😘"><span class="arrow">↗</span><img src="kiss.png" alt="Kiss"><strong>Steal a kiss</strong><small>One kiss, then one more</small></button>
@@ -337,11 +357,34 @@ function setUser(u){if(authSession&&cloudIdentity)u=cloudIdentity;sender=u;docum
 $('btn-mukku').addEventListener('click',()=>setUser('mukku'));$('btn-khushi').addEventListener('click',()=>setUser('khushi'));
 let sceneTimer=null,sceneIndex=0;
 const sceneImages=["assets/scene-home.svg","assets/scene-memories.svg","assets/scene-date.svg","assets/scene-vault.svg"];
-function startSceneRotation(){const layer=$('sceneBackdrop');if(!layer)return;document.body.classList.add('scene-active');document.body.classList.remove('scene-locked');if(sceneTimer)clearInterval(sceneTimer);sceneTimer=setInterval(()=>{layer.style.opacity='0';setTimeout(()=>{sceneIndex=(sceneIndex+1)%sceneImages.length;layer.style.backgroundImage="linear-gradient(90deg,#05060bd9,#08060bb0 50%,#05060bd9),url('"+sceneImages[sceneIndex]+"')";layer.style.opacity='';},1800)},15000)}
-function stopSceneRotation(){if(sceneTimer)clearInterval(sceneTimer);sceneTimer=null;document.body.classList.remove('scene-active');document.body.classList.add('scene-locked')}
-function localUnlock(){if($('passInput').value===LOCAL_PASS){$('lockscreen').classList.add('hidden');document.body.classList.remove('is-locked');sessionStorage.setItem('st2-preview','1');startSceneRotation()}else $('error').textContent='That passcode does not match. Try again.'}
+function startSceneRotation(){const video=$('siteBackgroundVideo');document.body.classList.add('scene-active');document.body.classList.remove('scene-locked');if(video){video.muted=true;video.loop=true;video.playsInline=true;const p=video.play();if(p&&p.catch)p.catch(()=>{});}}
+function stopSceneRotation(){document.body.classList.remove('scene-active');document.body.classList.add('scene-locked');const video=$('siteBackgroundVideo');if(video)video.pause();}
+
+const pageSections={home:['cravings'],world:['chemistry'],memories:['memories'],games:['games','date-night','video-dares'],vault:['vault'],more:['together']};
+function showPage(page,updateHash=true){
+ if(!pageSections[page])page='home';
+ const main=document.querySelector('.app-main');
+ main.querySelectorAll(':scope > .section').forEach(section=>{
+  const visible=pageSections[page].includes(section.id)||(page==='more'&&Boolean(section.querySelector('#countdownText')));
+  section.hidden=!visible;
+ });
+ const hero=main.querySelector(':scope > .hero');if(hero)hero.hidden=page!=='home';
+ const quick=main.querySelector(':scope > .quick-nav');if(quick)quick.hidden=true;
+ document.querySelectorAll('.love-sidebar .side-link[data-page]').forEach(link=>{
+  const active=link.dataset.page===page;link.classList.toggle('current',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
+ });
+ document.body.dataset.page=page;
+ if(updateHash&&location.hash!=='#'+page)history.replaceState(null,'','#'+page);
+ window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelector('.love-sidebar nav').addEventListener('click',event=>{
+ const link=event.target.closest('a[data-page]');if(!link)return;event.preventDefault();showPage(link.dataset.page);
+});
+window.addEventListener('hashchange',()=>showPage(location.hash.slice(1),false));
+
+function localUnlock(){if($('passInput').value===LOCAL_PASS){showPage('home');$('lockscreen').classList.add('hidden');document.body.classList.remove('is-locked');sessionStorage.setItem('st2-preview','1');startSceneRotation()}else $('error').textContent='That passcode does not match. Try again.'}
 $('unlockBtn').addEventListener('click',localUnlock);$('passInput').addEventListener('keydown',e=>{if(e.key==='Enter')localUnlock()});
-function showApp(){ $('lockscreen').classList.add('hidden'); document.body.classList.remove('is-locked'); $('accountBtn').style.display=hasCloud?'inline-flex':'none'; startSceneRotation(); }
+function showApp(){ showPage('home'); $('lockscreen').classList.add('hidden'); document.body.classList.remove('is-locked'); $('accountBtn').style.display=hasCloud?'inline-flex':'none'; startSceneRotation(); }
 async function authAction(kind){$('error').textContent='';const email=$('authEmail').value.trim(),password=$('authPassword').value;if(!email||!password){$('error').textContent='Enter your email and password.';return}try{const res=kind==='signup'?await client.auth.signUp({email,password}):await client.auth.signInWithPassword({email,password});if(res.error)throw res.error;if(kind==='signup'&&!res.data.session){$('error').textContent='Account created. Verify your email, then sign in.';return}authSession=res.data.session;await startCloud();}catch(e){$('error').textContent=e.message||'Could not sign in.'}}
 async function startCloud(){const {data}=await client.auth.getSession();authSession=data.session;if(!authSession){document.body.classList.add('is-locked');$('lockscreen').classList.remove('hidden');return}const {data:member,error:memberError}=await client.from('couple_members').select('display_name').eq('user_id',authSession.user.id).single();if(memberError||!member)throw memberError||new Error('This account is not part of the couple.');cloudIdentity=String(member.display_name).toLowerCase()==='khushi'?'khushi':'mukku';sender=cloudIdentity;document.body.dataset.user=sender;$('btn-mukku').disabled=true;$('btn-khushi').disabled=true;showApp();$('syncStatus').textContent='● Checking private sync…';await loadCloud();client.channel('st-shared-'+cfg.coupleId).on('postgres_changes',{event:'*',schema:'public',table:'shared_entries',filter:'couple_id=eq.'+cfg.coupleId},payload=>{if(payload.eventType==='INSERT'&&payload.new?.entry_type==='chat'&&payload.new?.created_by!==authSession?.user?.id&&'Notification'in window&&Notification.permission==='granted'&&document.visibilityState!=='visible'){new Notification('Secret Territory',{body:'A new message is waiting for you. 💌'})}loadCloud()}).subscribe();const presence=client.channel('st-presence-'+cfg.coupleId,{config:{private:true,presence:{key:authSession.user.id}}});presence.on('presence',{event:'sync'},()=>{const count=Object.keys(presence.presenceState()).length;$('presenceStatus').innerHTML=count>1?'<span class="presence-dot"></span>Together right now':'<span class="presence-dot"></span>Just you for now'}).subscribe(async status=>{if(status==='SUBSCRIBED')await presence.track({user:authSession.user.id,online_at:new Date().toISOString()})});client.auth.onAuthStateChange((_event,session)=>{authSession=session;if(!session){document.body.classList.add('is-locked');$('lockscreen').classList.remove('hidden');$('syncStatus').textContent='● Signed out'}})}
 if(hasCloud){$('localFields').style.display='none';$('authFields').classList.add('show');$('loginIntro').innerHTML='Sign in to enter your shared private world.<br>Only approved members can access it.';$('signInBtn').addEventListener('click',()=>authAction('signin'));$('signUpBtn').addEventListener('click',()=>authAction('signup'));$('authPassword').addEventListener('keydown',e=>{if(e.key==='Enter')authAction('signin')});startCloud().catch(e=>{$('error').textContent=e.message})}else if(sessionStorage.getItem('st2-preview')==='1')showApp();
