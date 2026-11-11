@@ -70,10 +70,45 @@ body[data-user="khushi"] .user-switch button.active{box-shadow:0 0 22px #55c9b24
 body[data-user="mukku"] .user-switch button.active{box-shadow:0 0 22px #5279aa44}
 @media(max-width:720px){.romance-scene svg{width:105vw;right:-28%;bottom:10%;opacity:.19}.romance-scene .moon{width:130px;height:130px;right:7%;top:17%}}
 @media(prefers-reduced-motion:reduce){.romance-scene *{animation:none!important}}
+/* Intimate looping silhouette: a slow lean-in, kiss and cuddle sway */
+.romance-scene{opacity:.52}
+.romance-scene .embrace-scene{width:min(88vw,780px);right:-2%;bottom:0;opacity:.31;filter:drop-shadow(0 0 48px #b34b7655);transform-origin:50% 80%}
+.romance-scene .lover-left{transform-box:fill-box;transform-origin:85% 75%;animation:leanInLeft 7s ease-in-out infinite}
+.romance-scene .lover-right{transform-box:fill-box;transform-origin:15% 75%;animation:leanInRight 7s ease-in-out infinite}
+.romance-scene .kiss-glow{transform-origin:center;animation:kissPulse 3.5s ease-in-out infinite;opacity:.65}
+@keyframes leanInLeft{0%,100%{transform:translate(0,0) rotate(0)}35%,65%{transform:translate(9px,-5px) rotate(2deg)}}
+@keyframes leanInRight{0%,100%{transform:translate(0,0) rotate(0)}35%,65%{transform:translate(-10px,-7px) rotate(-2deg)}}
+@keyframes kissPulse{0%,100%{transform:scale(.82);opacity:.18}50%{transform:scale(1.12);opacity:.7}}
+#lockscreen{background:radial-gradient(ellipse at center,#24131cbb 0,#100a12c9 52%,#050408dd 100%);backdrop-filter:blur(3px)}
+@media(max-width:720px){.romance-scene .embrace-scene{width:125vw;right:-38%;bottom:7%;opacity:.24}}
+@media(prefers-reduced-motion:reduce){.romance-scene .lover-left,.romance-scene .lover-right,.romance-scene .kiss-glow{animation:none!important}}
 </style>
 </head>
 <body data-user="mukku">
-<div class="romance-scene" aria-hidden="true"><div class="moon"></div><div class="light"></div><svg viewBox="0 0 700 520" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="silhouette" x1="170" y1="70" x2="540" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#f1c3d4"/><stop offset=".48" stop-color="#a84e70"/><stop offset="1" stop-color="#1a263e"/></linearGradient></defs><path d="M202 520c-5-87 8-150 50-196 24-26 54-38 80-39-32-25-48-61-43-99 5-39 31-68 67-75 31-6 58 8 73 32 12 20 14 46 5 69-7 18-19 31-35 40 36 12 65 38 81 73 15 33 18 83 16 195H202Z" fill="url(#silhouette)" opacity=".8"/><path d="M335 151c-12-40 2-77 33-91 28-13 58-1 70 25 9 19 7 42-5 59-8 12-20 21-34 25 25 10 45 29 56 55-31 8-59 6-81-9-22-15-35-37-39-64Z" fill="#0a0b14"/><path d="M416 180c8-31 31-53 59-54 25-1 45 17 47 42 2 18-6 34-21 44 31 11 52 34 62 68-31 14-64 12-91-4-29-17-48-50-56-96Z" fill="#080911"/><path d="M399 166c-4 23-17 42-38 52 21 14 48 17 72 7" stroke="#f4c6d8" stroke-opacity=".5" stroke-width="5" stroke-linecap="round"/></svg></div><div class="ambient"></div><div class="ambient two"></div>
+<div class="romance-scene" aria-hidden="true"><div class="moon"></div><div class="light"></div><svg class="embrace-scene" viewBox="0 0 800 620" fill="none" xmlns="http://www.w3.org/2000/svg" role="presentation">
+<defs>
+ <linearGradient id="loverGlow" x1="150" y1="80" x2="650" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#7bcfc4"/><stop offset=".48" stop-color="#9b4969"/><stop offset="1" stop-color="#162a46"/></linearGradient>
+ <filter id="softBlur"><feGaussianBlur stdDeviation="2.4"/></filter>
+</defs>
+<g filter="url(#softBlur)" opacity=".9">
+ <path d="M62 620c12-115 44-191 117-231 40-22 93-32 148-28 46 4 90 23 125 59 34 35 50 99 53 200H62Z" fill="#05070d"/>
+ <path d="M737 620c-9-119-42-197-112-237-43-25-93-35-145-30-52 5-94 27-128 65-29 33-42 99-45 202h430Z" fill="#070811"/>
+ <g class="lover-left">
+  <path d="M215 160c-5-61 31-109 83-115 48-5 88 30 91 80 2 41-20 75-55 91-39 18-89-1-109-56Z" fill="#070811"/>
+  <path d="M203 151c-5-70 37-128 98-132 34-2 65 15 82 43-35-13-64-5-84 17-18 20-27 51-22 83-20-4-42-7-74-11Z" fill="#02040a"/>
+  <path d="M176 620c-3-104 18-190 69-239 34-32 77-47 127-41 46 5 79 31 103 76-69 18-111 63-128 204H176Z" fill="url(#loverGlow)" opacity=".65"/>
+ </g>
+ <g class="lover-right">
+  <path d="M480 142c8-58 52-94 99-85 48 9 73 56 57 104-12 36-43 60-78 59-43-2-83-35-78-78Z" fill="#05060d"/>
+  <path d="M472 135c11-70 61-111 119-92 27 9 46 31 54 59-24-16-49-18-71-5-23 13-38 39-41 70-20-7-41-17-61-32Z" fill="#02040a"/>
+  <path d="M395 620c4-104 29-182 78-226 35-31 80-43 127-32 49 11 85 46 107 98 16 39 24 93 27 160H395Z" fill="url(#loverGlow)" opacity=".58"/>
+ </g>
+ <path d="M282 260c45 13 77 40 102 78 20 30 44 49 78 55" stroke="#03050a" stroke-width="39" stroke-linecap="round"/>
+ <path d="M560 247c-43 18-73 47-95 88-18 34-42 55-76 65" stroke="#02040a" stroke-width="38" stroke-linecap="round"/>
+ <path d="M375 193c23 20 46 26 69 21" stroke="#d28aa8" stroke-opacity=".22" stroke-width="5" stroke-linecap="round"/>
+</g>
+<g class="kiss-glow"><path d="M398 115c-19-23-53-3-38 24l39 39 38-39c16-27-18-47-39-24Z" fill="#d46c91" opacity=".42"/></g>
+</svg></div><div class="ambient"></div><div class="ambient two"></div>
 <div id="lockscreen"><div class="lock-card"><div class="lock-mark">✦</div><div class="eyebrow">A place just for us</div><h1>Secret <span style="color:var(--sea)">Territory</span></h1><p class="sub" id="loginIntro">Some worlds are better when they're shared by two.<br>Enter our little secret.</p>
 <div id="authFields" class="auth-fields"><input class="field" id="authEmail" type="email" placeholder="Email address" autocomplete="username"><input class="field" id="authPassword" type="password" placeholder="Password" autocomplete="current-password"><div class="auth-actions"><button class="btn" id="signInBtn">Sign in</button><button class="btn ghost" id="signUpBtn">Create account</button></div><p class="local-hint">Private cloud login is enabled for this setup.</p></div>
 <div id="localFields"><input class="field" id="passInput" type="password" placeholder="Our passcode" autocomplete="current-password"><button class="btn" id="unlockBtn">Enter our world&nbsp; ↗</button><p class="local-hint">Local preview mode · Configure Supabase Auth for secure shared access.</p></div><p id="error"></p></div></div>
