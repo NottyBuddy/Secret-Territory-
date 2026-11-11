@@ -82,33 +82,28 @@ body[data-user="mukku"] .user-switch button.active{box-shadow:0 0 22px #5279aa44
 #lockscreen{background:radial-gradient(ellipse at center,#24131cbb 0,#100a12c9 52%,#050408dd 100%);backdrop-filter:blur(3px)}
 @media(max-width:720px){.romance-scene .embrace-scene{width:125vw;right:-38%;bottom:7%;opacity:.24}}
 @media(prefers-reduced-motion:reduce){.romance-scene .lover-left,.romance-scene .lover-right,.romance-scene .kiss-glow{animation:none!important}}
+
+/* Static cinematic artwork — no moving couple animation */
+.scene-backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;background-image:linear-gradient(90deg,#05060bd9,#08060bb0 50%,#05060bd9),url('assets/scene-home.svg');background-position:center;background-size:cover;background-repeat:no-repeat;filter:saturate(.82);transition:opacity 2.2s ease,background-image 0s}
+body.scene-active .scene-backdrop{opacity:.46}
+body.scene-locked .scene-backdrop{opacity:0}
+main{position:relative;z-index:1}
+#lockscreen{z-index:50}
+.section{position:relative;isolation:isolate;overflow:hidden}
+.section:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-position:center;background-size:cover;opacity:.11;filter:blur(1px)}
+#cravings:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-home.svg')}
+#chemistry:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-date.svg')}
+#games:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-memories.svg')}
+#date-night:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-date.svg')}
+#video-dares:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-home.svg')}
+#vault:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-vault.svg')}
+#memories:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-memories.svg')}
+#together:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-vault.svg')}
+@media(prefers-reduced-motion:reduce){.scene-backdrop{transition:none}}
 </style>
 </head>
 <body data-user="mukku">
-<div class="romance-scene" aria-hidden="true"><div class="moon"></div><div class="light"></div><svg class="embrace-scene" viewBox="0 0 800 620" fill="none" xmlns="http://www.w3.org/2000/svg" role="presentation">
-<defs>
- <linearGradient id="loverGlow" x1="150" y1="80" x2="650" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#7bcfc4"/><stop offset=".48" stop-color="#9b4969"/><stop offset="1" stop-color="#162a46"/></linearGradient>
- <filter id="softBlur"><feGaussianBlur stdDeviation="2.4"/></filter>
-</defs>
-<g filter="url(#softBlur)" opacity=".9">
- <path d="M62 620c12-115 44-191 117-231 40-22 93-32 148-28 46 4 90 23 125 59 34 35 50 99 53 200H62Z" fill="#05070d"/>
- <path d="M737 620c-9-119-42-197-112-237-43-25-93-35-145-30-52 5-94 27-128 65-29 33-42 99-45 202h430Z" fill="#070811"/>
- <g class="lover-left">
-  <path d="M215 160c-5-61 31-109 83-115 48-5 88 30 91 80 2 41-20 75-55 91-39 18-89-1-109-56Z" fill="#070811"/>
-  <path d="M203 151c-5-70 37-128 98-132 34-2 65 15 82 43-35-13-64-5-84 17-18 20-27 51-22 83-20-4-42-7-74-11Z" fill="#02040a"/>
-  <path d="M176 620c-3-104 18-190 69-239 34-32 77-47 127-41 46 5 79 31 103 76-69 18-111 63-128 204H176Z" fill="url(#loverGlow)" opacity=".65"/>
- </g>
- <g class="lover-right">
-  <path d="M480 142c8-58 52-94 99-85 48 9 73 56 57 104-12 36-43 60-78 59-43-2-83-35-78-78Z" fill="#05060d"/>
-  <path d="M472 135c11-70 61-111 119-92 27 9 46 31 54 59-24-16-49-18-71-5-23 13-38 39-41 70-20-7-41-17-61-32Z" fill="#02040a"/>
-  <path d="M395 620c4-104 29-182 78-226 35-31 80-43 127-32 49 11 85 46 107 98 16 39 24 93 27 160H395Z" fill="url(#loverGlow)" opacity=".58"/>
- </g>
- <path d="M282 260c45 13 77 40 102 78 20 30 44 49 78 55" stroke="#03050a" stroke-width="39" stroke-linecap="round"/>
- <path d="M560 247c-43 18-73 47-95 88-18 34-42 55-76 65" stroke="#02040a" stroke-width="38" stroke-linecap="round"/>
- <path d="M375 193c23 20 46 26 69 21" stroke="#d28aa8" stroke-opacity=".22" stroke-width="5" stroke-linecap="round"/>
-</g>
-<g class="kiss-glow"><path d="M398 115c-19-23-53-3-38 24l39 39 38-39c16-27-18-47-39-24Z" fill="#d46c91" opacity=".42"/></g>
-</svg></div><div class="ambient"></div><div class="ambient two"></div>
+<div class="scene-backdrop" id="sceneBackdrop" aria-hidden="true"></div><div class="ambient"></div><div class="ambient two"></div>
 <div id="lockscreen"><div class="lock-card"><div class="lock-mark">✦</div><div class="eyebrow">A place just for us</div><h1>Secret <span style="color:var(--sea)">Territory</span></h1><p class="sub" id="loginIntro">Some worlds are better when they're shared by two.<br>Enter our little secret.</p>
 <div id="authFields" class="auth-fields"><input class="field" id="authEmail" type="email" placeholder="Email address" autocomplete="username"><input class="field" id="authPassword" type="password" placeholder="Password" autocomplete="current-password"><div class="auth-actions"><button class="btn" id="signInBtn">Sign in</button><button class="btn ghost" id="signUpBtn">Create account</button></div><p class="local-hint">Private cloud login is enabled for this setup.</p></div>
 <div id="localFields"><input class="field" id="passInput" type="password" placeholder="Our passcode" autocomplete="current-password"><button class="btn" id="unlockBtn">Enter our world&nbsp; ↗</button><p class="local-hint">Local preview mode · Configure Supabase Auth for secure shared access.</p></div><p id="error"></p></div></div>
@@ -188,9 +183,13 @@ const store={get:k=>{try{return JSON.parse(localStorage.getItem('st2-'+k)||'[]')
 function toast(s){const e=$('toast');e.textContent=s;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2700)}
 function setUser(u){if(authSession&&cloudIdentity)u=cloudIdentity;sender=u;document.body.dataset.user=u;$('btn-mukku').classList.toggle('active',u==='mukku');$('btn-khushi').classList.toggle('active',u==='khushi');renderQuizScore();renderThisOrThat();renderChat()}
 $('btn-mukku').addEventListener('click',()=>setUser('mukku'));$('btn-khushi').addEventListener('click',()=>setUser('khushi'));
-function localUnlock(){if($('passInput').value===LOCAL_PASS){$('lockscreen').classList.add('hidden');sessionStorage.setItem('st2-preview','1')}else $('error').textContent='That passcode does not match. Try again.'}
+let sceneTimer=null,sceneIndex=0;
+const sceneImages=["assets/scene-home.svg","assets/scene-memories.svg","assets/scene-date.svg","assets/scene-vault.svg"];
+function startSceneRotation(){const layer=$('sceneBackdrop');if(!layer)return;document.body.classList.add('scene-active');document.body.classList.remove('scene-locked');if(sceneTimer)clearInterval(sceneTimer);sceneTimer=setInterval(()=>{layer.style.opacity='0';setTimeout(()=>{sceneIndex=(sceneIndex+1)%sceneImages.length;layer.style.backgroundImage="linear-gradient(90deg,#05060bd9,#08060bb0 50%,#05060bd9),url('"+sceneImages[sceneIndex]+"')";layer.style.opacity='';},1800)},15000)}
+function stopSceneRotation(){if(sceneTimer)clearInterval(sceneTimer);sceneTimer=null;document.body.classList.remove('scene-active');document.body.classList.add('scene-locked')}
+function localUnlock(){if($('passInput').value===LOCAL_PASS){$('lockscreen').classList.add('hidden');sessionStorage.setItem('st2-preview','1');startSceneRotation()}else $('error').textContent='That passcode does not match. Try again.'}
 $('unlockBtn').addEventListener('click',localUnlock);$('passInput').addEventListener('keydown',e=>{if(e.key==='Enter')localUnlock()});
-function showApp(){ $('lockscreen').classList.add('hidden'); $('accountBtn').style.display=hasCloud?'inline-flex':'none'; }
+function showApp(){ $('lockscreen').classList.add('hidden'); $('accountBtn').style.display=hasCloud?'inline-flex':'none'; startSceneRotation(); }
 async function authAction(kind){$('error').textContent='';const email=$('authEmail').value.trim(),password=$('authPassword').value;if(!email||!password){$('error').textContent='Enter your email and password.';return}try{const res=kind==='signup'?await client.auth.signUp({email,password}):await client.auth.signInWithPassword({email,password});if(res.error)throw res.error;if(kind==='signup'&&!res.data.session){$('error').textContent='Account created. Verify your email, then sign in.';return}authSession=res.data.session;await startCloud();}catch(e){$('error').textContent=e.message||'Could not sign in.'}}
 async function startCloud(){const {data}=await client.auth.getSession();authSession=data.session;if(!authSession){$('lockscreen').classList.remove('hidden');return}const {data:member,error:memberError}=await client.from('couple_members').select('display_name').eq('user_id',authSession.user.id).single();if(memberError||!member)throw memberError||new Error('This account is not part of the couple.');cloudIdentity=String(member.display_name).toLowerCase()==='khushi'?'khushi':'mukku';sender=cloudIdentity;document.body.dataset.user=sender;$('btn-mukku').disabled=true;$('btn-khushi').disabled=true;showApp();$('syncStatus').textContent='● Checking private sync…';await loadCloud();client.channel('st-shared-'+cfg.coupleId).on('postgres_changes',{event:'*',schema:'public',table:'shared_entries',filter:'couple_id=eq.'+cfg.coupleId},payload=>{if(payload.eventType==='INSERT'&&payload.new?.entry_type==='chat'&&payload.new?.created_by!==authSession?.user?.id&&'Notification'in window&&Notification.permission==='granted'&&document.visibilityState!=='visible'){new Notification('Secret Territory',{body:'A new message is waiting for you. 💌'})}loadCloud()}).subscribe();const presence=client.channel('st-presence-'+cfg.coupleId,{config:{private:true,presence:{key:authSession.user.id}}});presence.on('presence',{event:'sync'},()=>{const count=Object.keys(presence.presenceState()).length;$('presenceStatus').innerHTML=count>1?'<span class="presence-dot"></span>Together right now':'<span class="presence-dot"></span>Just you for now'}).subscribe(async status=>{if(status==='SUBSCRIBED')await presence.track({user:authSession.user.id,online_at:new Date().toISOString()})});client.auth.onAuthStateChange((_event,session)=>{authSession=session;if(!session){$('lockscreen').classList.remove('hidden');$('syncStatus').textContent='● Signed out'}})}
 if(hasCloud){$('localFields').style.display='none';$('authFields').classList.add('show');$('loginIntro').innerHTML='Sign in to enter your shared private world.<br>Only approved members can access it.';$('signInBtn').addEventListener('click',()=>authAction('signin'));$('signUpBtn').addEventListener('click',()=>authAction('signup'));$('authPassword').addEventListener('keydown',e=>{if(e.key==='Enter')authAction('signin')});startCloud().catch(e=>{$('error').textContent=e.message})}else if(sessionStorage.getItem('st2-preview')==='1')showApp();
