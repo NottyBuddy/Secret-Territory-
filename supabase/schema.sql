@@ -76,3 +76,53 @@ end $$;
 -- insert into public.couple_members (couple_id, user_id, display_name) values
 -- ('YOUR_SHARED_COUPLE_UUID', 'MUKKU_AUTH_USER_UUID', 'Mukku'),
 -- ('YOUR_SHARED_COUPLE_UUID', 'KHUSHI_AUTH_USER_UUID', 'Khushi');
+
+-- Private scrapbook storage. The first folder in each object path is couple_id.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'secret-territory-memories',
+  'secret-territory-memories',
+  false,
+  2097152,
+  array['image/jpeg','image/png','image/webp']
+)
+on conflict (id) do update
+set public = false,
+    file_size_limit = 2097152,
+    allowed_mime_types = array['image/jpeg','image/png','image/webp'];
+
+drop policy if exists "Couple members can view scrapbook photos" on storage.objects;
+create policy "Couple members can view scrapbook photos"
+  on storage.objects for select to authenticated
+  using (
+    bucket_id = 'secret-territory-memories'
+    and exists (
+      select 1 from public.couple_members cm
+      where cm.couple_id::text = (storage.foldername(name))[1]
+        and cm.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "Couple members can upload scrapbook photos" on storage.objects;
+create policy "Couple members can upload scrapbook photos"
+  on storage.objects for insert to authenticated
+  with check (
+    bucket_id = 'secret-territory-memories'
+    and exists (
+      select 1 from public.couple_members cm
+      where cm.couple_id::text = (storage.foldername(name))[1]
+        and cm.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "Couple members can delete scrapbook photos" on storage.objects;
+create policy "Couple members can delete scrapbook photos"
+  on storage.objects for delete to authenticated
+  using (
+    bucket_id = 'secret-territory-memories'
+    and exists (
+      select 1 from public.couple_members cm
+      where cm.couple_id::text = (storage.foldername(name))[1]
+        and cm.user_id = auth.uid()
+    )
+  );
