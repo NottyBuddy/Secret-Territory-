@@ -1,26 +1,51 @@
-# Secret Territory
+# Secret Territory — Just Us
 
-A mobile-first private-corner experience for Mukku & Khushi.
+A mobile-first private world for Mukku & Khushi, styled around two favourite colours: sea green and deep ocean blue.
 
-## What's included
-- Luxury dark-romantic UI with responsive glass panels, ambient motion and touch feedback
-- Existing image assets and core sections preserved
-- Sweet Cravings, Our Chemistry, Video Call Dares and an expanded Private Vault
-- Surprise-me dare, private note composer and local selection history
-- WhatsApp click-to-chat handoff with digit-only international phone validation and URL-encoded messages
+## Experience included
+- Ocean-inspired luxury UI, animated ambient background, glass panels, responsive touch-friendly cards and reduced-motion support
+- Preserved Sweet Cravings, Our Chemistry, Video Call Dares, Private Vault and WhatsApp click-to-chat flow
+- Love Quiz with per-person answers and a playful match score
+- This or That, Mood Match, Daily Mission and Date Night Wheel
+- Secret-code Surprise Box
+- Memory Lane, sealed letters with optional unlock dates, and a relationship countdown
+- Local JSON backup and restore for saved entries
+- Mukku / Khushi profile switch and recent activity history
 
-## WhatsApp setup
-The two destination numbers are currently configured near the top of the inline script in `index.html`:
-- `MUKKU_NUMBER`
-- `KHUSHI_NUMBER`
+## WhatsApp
+The destination numbers are configured in the inline script in `index.html`:
+- `targetNumber()` maps Mukku to Khushi and Khushi to Mukku.
+- Numbers must be full international digits (India country code 91; no +, spaces or leading 0).
+- The site opens a pre-filled draft; the user still presses Send in WhatsApp.
+- Android may show an account/app chooser when both WhatsApp and an App Clone are installed. The user can select the clone and choose Always if Android offers it. A website cannot reliably force Vivo's cloned-app package.
 
-They must be full international numbers using digits only (India country code 91, no +, spaces or leading 0). Each number must have an active WhatsApp account. The page opens a pre-filled draft; the user still presses Send in WhatsApp. If a new tab is blocked, the page falls back to navigating the current tab.
+## Local preview
+If `config.js` is absent or incomplete, the site runs in local preview mode with the existing convenience passcode. Local preview is not secure authentication; a front-end passcode can be discovered from the public source. Do not treat this mode as private cloud access.
 
-## Shared data status
-History is still saved on the current browser/device by default. The UI contains a Supabase REST integration hook, but **shared sync is not enabled by default**. Do not enable it with public/anonymous read-write database policies: the repository is public and that would expose private moments. To finish secure cross-device sync, configure Supabase Auth for both people and authenticated-only Row Level Security, then wire the signed-in user's access token into the REST requests. Never put a Supabase service-role key in this repository.
+## Secure shared cloud setup (Supabase)
 
-## Important security note
-This is a static front-end. The current passcodes are in browser JavaScript and are only a casual screen gate, not real authentication. Anyone who can inspect the public source can discover them. Do not store sensitive/private content here until real authentication and server-side authorization are added.
+Shared cloud sync requires Supabase Auth and the membership-based RLS policies below. It is intentionally not active until you configure a Supabase project.
 
-## Deploy
-GitHub Pages can serve this static site directly from the repository root. Keep the image assets beside `index.html`.
+1. Create a Supabase project.
+2. In Authentication, enable Email + Password. Create the Mukku and Khushi accounts from the site's login screen. Confirm their emails if email confirmation is enabled.
+3. Run [`supabase/schema.sql`](supabase/schema.sql) in the Supabase SQL Editor.
+4. In Supabase Authentication → Users, copy both users' UUIDs. Generate one random UUID for the couple.
+5. In the SQL Editor, insert the two membership rows using the same couple UUID:
+   ```sql
+   insert into public.couple_members (couple_id, user_id, display_name) values
+   ('YOUR_SHARED_COUPLE_UUID', 'MUKKU_AUTH_USER_UUID', 'Mukku'),
+   ('YOUR_SHARED_COUPLE_UUID', 'KHUSHI_AUTH_USER_UUID', 'Khushi');
+   ```
+6. Copy `config.example.js` to `config.js` and fill in the project URL, publishable/anon key, and that same couple UUID. Deploy `config.js` alongside `index.html` on your static host. The publishable/anon key is designed for browser use; RLS is the security boundary.
+7. Sign in on both devices. The app reads/writes shared entries only through the authenticated Supabase client. Realtime updates refresh the shared view.
+
+**Never put a Supabase service-role key or secret key in `config.js`, GitHub, or browser code.** Keep the two membership rows restricted to the intended accounts. The RLS policies allow a member to read entries for their couple and create/delete only their own entries.
+
+### What is shared
+Once configured, moments, quiz picks, mood selections, missions, date ideas, surprises, memories and letters are written to `shared_entries`. Backup files are exported/imported on the current device; keep a separate copy somewhere safe.
+
+## Deployment and safety notes
+- GitHub Pages can serve the static site from the repository root. Keep the original PNG assets beside `index.html`.
+- `config.js` is git-ignored. Do not commit it unless you intentionally choose to publish the public Supabase URL, publishable key and couple UUID; never publish service credentials.
+- Secret Vault and Surprise Box codes in a static client are playful unlocks, not security controls.
+- Test login, both accounts, RLS, live updates, WhatsApp chooser, memory backup/restore and mobile layout before treating the site as production-ready.
