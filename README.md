@@ -53,4 +53,5 @@ Once configured, moments, quiz picks, This or That picks, mood selections, missi
 - GitHub Pages can serve the static site from the repository root. Keep the original PNG assets beside `index.html`.
 - `config.js` is git-ignored. Do not commit it unless you intentionally choose to publish the public Supabase URL, publishable key and couple UUID; never publish service credentials.
 - Secret Vault and Surprise Box codes in a static client are playful unlocks, not security controls.
+- Open When dates control the in-app reveal UI; because the shared-entry database serves both approved members, treat future-dated letter text as visible to either authenticated member through the underlying data. It is a thoughtful reveal, not cryptographic time-locking.
 - Test login, both accounts, RLS, storage policies, live updates, WhatsApp chooser, scrapbook uploads, memory backup/restore and mobile layout before treating the site as production-ready.
