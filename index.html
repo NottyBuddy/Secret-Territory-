@@ -192,6 +192,48 @@ body.scene-active .scene-backdrop,body.scene-locked .scene-backdrop{opacity:1!im
 .section:before{background-image:none!important;opacity:0!important}
 @media(max-width:720px){.site-background-video{object-position:54% center;opacity:.84}.scene-backdrop:after{background:linear-gradient(90deg,#10090b99,#130b0c50 50%,#0b0c1290),linear-gradient(180deg,#09070b35,#10090b8c)!important}}
 @media(prefers-reduced-motion:reduce){.site-background-video{display:none}.scene-backdrop{background-image:linear-gradient(90deg,#10090bc0,#130b0c85,#0b0c12c0),url('assets/scene-home.svg')!important}}
+
+/* Ultra-transparent layout: let the cinematic couple video breathe */
+.love-sidebar,.love-sidebar nav,.love-sidebar .brand,.love-sidebar .sidebar-footer{
+  background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important
+}
+.love-sidebar{border-right:0!important}
+.love-sidebar .side-link,.side-link{
+  background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;
+  border-radius:14px;transition:color .22s ease,background .22s ease,transform .22s ease,filter .22s ease!important
+}
+.love-sidebar .side-link:hover,.side-link:hover{
+  background:rgba(190,45,70,.13)!important;border-color:transparent!important;
+  color:#fff!important;box-shadow:0 0 22px rgba(210,55,82,.14)!important;transform:translateX(3px)
+}
+.love-sidebar .side-link.active,.love-sidebar .side-link.current,.side-link.active,.side-link[aria-current="page"]{
+  background:rgba(180,42,65,.10)!important;border-color:transparent!important;
+  box-shadow:inset 2px 0 0 rgba(221,82,105,.75),0 0 20px rgba(190,45,70,.10)!important
+}
+.section,.card,.feature-box,.panel,.love-sidebar .profile-card,.stat-card,.memory-card,.game-card{
+  background:transparent!important;border:0!important;outline:0!important;
+  box-shadow:none!important;backdrop-filter:none!important
+}
+.section{border-radius:0!important}
+.card,.feature-box,.panel,.memory-card,.game-card{
+  border-radius:18px;transition:transform .28s ease,filter .28s ease,background .28s ease!important
+}
+.card:hover,.feature-box:hover,.panel:hover,.memory-card:hover,.game-card:hover{
+  background:rgba(120,35,53,.10)!important;border:0!important;
+  box-shadow:0 10px 32px rgba(0,0,0,.16),0 0 24px rgba(190,45,70,.10)!important;
+  transform:translateY(-3px);filter:brightness(1.12)
+}
+.card:active,.feature-box:active,.panel:active,.memory-card:active,.game-card:active{
+  transform:scale(.985);background:rgba(150,42,62,.16)!important
+}
+.card:focus-visible,.feature-box:focus-visible,.panel:focus-visible,.side-link:focus-visible{
+  outline:2px solid rgba(95,205,198,.72)!important;outline-offset:3px
+}
+.section:before{opacity:.08!important}
+@media(max-width:900px){
+ .love-sidebar{background:transparent!important;border:0!important}
+ .love-sidebar .side-link:hover,.side-link:hover{transform:translateY(-2px)}
+}
 </style>
 </head>
 <body data-user="mukku">
