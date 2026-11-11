@@ -100,6 +100,27 @@ main{position:relative;z-index:1}
 #memories:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-memories.svg')}
 #together:before{background-image:linear-gradient(#07060bd9,#07060bd9),url('assets/scene-vault.svg')}
 @media(prefers-reduced-motion:reduce){.scene-backdrop{transition:none}}
+
+/* Final static background system: shared login artwork + page-specific scenes */
+.scene-backdrop{opacity:.5;background-image:linear-gradient(90deg,#03050bc9,#08060b99 50%,#03050bc9),url('assets/scene-home.svg');transition:opacity 2.4s ease;background-position:center;background-size:cover;background-repeat:no-repeat}
+body.scene-active .scene-backdrop{opacity:.42}
+body.scene-locked .scene-backdrop{opacity:.52}
+#lockscreen{background:linear-gradient(90deg,#03050bc9,#08060b99 50%,#03050bc9),url('assets/scene-home.svg') center/cover no-repeat;backdrop-filter:none}
+#lockscreen:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#05060b55,#05060bc2);pointer-events:none}
+.lock-card{position:relative;z-index:1;background:#170f1bdc}
+.ambient,.ambient.two{animation:none!important}
+.romance-scene,.romance-scene *{animation:none!important}
+.section:before{z-index:0;opacity:.18;filter:blur(1.5px)}
+.section>*{position:relative;z-index:1}
+#cravings:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-home.svg')}
+#chemistry:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-date.svg')}
+#games:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-memories.svg')}
+#date-night:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-date.svg')}
+#video-dares:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-vault.svg')}
+#vault:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-vault.svg')}
+#memories:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-memories.svg')}
+#together:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-home.svg')}
+@media(max-width:720px){.scene-backdrop{background-position:54% center}#lockscreen{background-position:54% center}.section:before{opacity:.13}}
 </style>
 </head>
 <body data-user="mukku">
