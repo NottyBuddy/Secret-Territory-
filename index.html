@@ -121,6 +121,48 @@ body.scene-locked .scene-backdrop{opacity:.52}
 #memories:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-memories.svg')}
 #together:before{background-image:linear-gradient(#07060b9c,#07060b9c),url('assets/scene-home.svg')}
 @media(max-width:720px){.scene-backdrop{background-position:54% center}#lockscreen{background-position:54% center}.section:before{opacity:.13}}
+
+/* SECRET TERRITORY — cinematic dashboard redesign */
+:root{--bg:#03070d;--bg2:#07131c;--panel:rgba(3,12,21,.78);--panel2:rgba(5,15,24,.9);--line:rgba(57,205,218,.23);--sea:#42d5d2;--sea2:#178e9b;--ice:#edf8ff;--muted:#9baebd;--gold:#d8b66d;--shadow:0 24px 75px #000b}
+body{background:#02060b;color:var(--ice);padding-left:218px}
+body:before{opacity:.09;background-size:58px 58px}
+.scene-backdrop{position:fixed;inset:0;z-index:-2;opacity:.68;background-image:linear-gradient(90deg,#02050bd9,#0308108a 52%,#02050bd9),url('assets/scene-home.svg');background-size:cover;background-position:center 42%;transition:opacity 2s ease,background-image 1.8s ease}
+.scene-backdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#02060b55 0%,#02060b28 45%,#02060bd9 100%)}
+.ambient,.ambient.two{opacity:.12;filter:blur(120px);animation:none}
+.love-sidebar{position:fixed;z-index:30;inset:0 auto 0 0;width:218px;padding:24px 17px 18px;background:linear-gradient(180deg,#02060bea,#06131bea 65%,#02060bf2);border-right:1px solid #39cbd42b;display:flex;flex-direction:column;gap:28px;backdrop-filter:blur(20px)}
+.sidebar-brand{display:flex;gap:10px;align-items:center;color:#f4fbff;text-decoration:none;font-family:'Playfair Display',serif;font-size:20px;white-space:nowrap}
+.sidebar-brand i{color:#4bd9d1;font-style:italic}.sidebar-brand small{display:block;text-align:center;font:8px 'DM Sans',sans-serif;letter-spacing:3px;color:#9eb6c2;margin-top:4px}
+.brand-heart{font-size:42px;line-height:1;color:#42d5d2;text-shadow:0 0 18px #22d9df}
+.love-sidebar nav{display:grid;gap:8px}.side-link{display:flex;gap:14px;align-items:center;padding:13px 14px;border:1px solid transparent;border-radius:30px;color:#b6c8d5;text-decoration:none;font-size:13px;transition:.25s}.side-link span{font-size:20px;color:#70d9e2;width:22px;text-align:center}.side-link:hover,.side-link.current{color:#f4ffff;border-color:#35cbd66b;background:linear-gradient(90deg,#0a7d9270,#0c243d66);box-shadow:0 0 24px #19bdc526}
+.sidebar-couple{margin-top:auto;padding:17px 12px;border:1px solid #40c8d33b;border-radius:20px;background:#03101abf;box-shadow:0 12px 35px #0008}.sidebar-couple .eyebrow{font-size:8px;text-align:center;letter-spacing:1.5px}
+.couple-profiles{display:flex;justify-content:center;align-items:center;gap:12px;margin:16px 0 6px}.profile-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:600 16px 'DM Sans';background:#071724;border:2px solid #2b8dff;box-shadow:0 0 20px #208dff66}.profile-dot.khushi-dot{border-color:#2cd8b8;box-shadow:0 0 20px #2cd8b866;color:#7cf4d9}.couple-profiles b{color:#4dd8d5;font-size:19px}.couple-names{display:flex;justify-content:space-between;font-size:10px;color:#9ec6d5}.heartbeat{text-align:center;color:#41d6d4;letter-spacing:2px;margin-top:13px;text-shadow:0 0 14px #27e8e8}
+.sidebar-footer{font-size:8px;letter-spacing:1px;color:#8ea6b4;display:flex;align-items:center;gap:8px}.sidebar-footer span:first-child{font-size:23px;color:#47d8d4}
+.app-main{max-width:1600px;margin:0 auto;padding:0 28px 70px}
+.topbar{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #5bcbd21a;position:relative;z-index:2}
+.brand{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:1px}.brand span{color:#42d5d2}
+.status{border:1px solid #4ed5d02c;background:#04111caa;color:#9fc8ce;padding:8px 12px;border-radius:30px;font-size:10px}
+.hero{position:relative;min-height:400px;padding:66px 5% 50px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;background:linear-gradient(90deg,#02060bb8 0%,#02060b60 48%,transparent 100%);border-radius:0 0 34px 34px;overflow:hidden}
+.hero:after{content:"You & Me…\A Always. ♡";white-space:pre;position:absolute;right:5%;top:34%;font:italic 34px 'Playfair Display',serif;color:#65e5df;text-align:center;text-shadow:0 0 24px #20d3dc;transform:rotate(-7deg);opacity:.86}
+.hero .eyebrow{color:#70d5dd;letter-spacing:3px}.hero h1{font-size:clamp(48px,7vw,86px);line-height:1;margin:12px 0 18px;font-family:'Playfair Display',serif;font-weight:500;letter-spacing:-2px}.hero h1 em{color:#4dd6d3;font-style:italic}.hero p{max-width:480px;color:#c2d0d9;line-height:1.8}.user-switch{border:1px solid #5bd4d733;background:#03101cbb;border-radius:30px;padding:4px;margin-top:14px}.user-switch button{border-radius:24px;padding:10px 22px;color:#a9bdc9}.user-switch button.active{background:linear-gradient(110deg,#116b8c,#147c80);color:white;box-shadow:0 0 22px #22cad455}
+.quick-nav{display:none}
+.section{position:relative;margin:28px 0 40px;padding:24px 22px;border:1px solid #49cbd323;border-radius:24px;background:linear-gradient(135deg,#03101bc9,#03080db8 72%);box-shadow:0 20px 55px #0007;overflow:hidden;backdrop-filter:blur(12px)}
+.section:before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.15;pointer-events:none}
+.section-head{position:relative;z-index:1}.section-head h2{font-family:'Playfair Display',serif;font-size:29px}.section-head p{color:#91aab9}
+.grid{position:relative;z-index:1;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}
+.card,.feature-box,.panel{background:linear-gradient(145deg,#071724d9,#050a12e8);border:1px solid #43cbd333;border-radius:22px;box-shadow:0 15px 38px #0008;backdrop-filter:blur(14px);transition:transform .35s,border-color .35s,box-shadow .35s}
+.card:hover,.feature-box:hover{transform:translateY(-5px);border-color:#45d9d6a6;box-shadow:0 18px 45px #0bb9ca25}
+.card img{border-radius:7px;box-shadow:0 0 18px #4acbd422}
+.feature-layout{position:relative;z-index:1;gap:16px}.feature-box{padding:23px}.feature-box h3{font-family:'Playfair Display',serif;font-size:23px}.result{background:#06121dcc;border:1px solid #45cbd32a;border-radius:15px;color:#d5e8ed}.choice{border-color:#48cdd33b;background:#06131f;color:#cde4ec}.choice:hover,.choice.selected{background:#0c6573;color:#fff;border-color:#54e2df}
+.btn{background:linear-gradient(110deg,#0a8295,#1a9e9a);color:#f4ffff;border:1px solid #59e1dc77;box-shadow:0 7px 25px #00b6c82b}.btn.ghost{background:#06121dbb;border-color:#58cbd43b;color:#cde3eb}.field,textarea{background:#02080f;border:1px solid #49cbd333;color:#f3ffff}
+.secret-panel{padding:28px;background:linear-gradient(130deg,#061723ed,#090a14ed);border-color:#46d5d54d}
+#lockscreen{background:linear-gradient(90deg,#02050bd9,#0308108a 52%,#02050bd9),url('assets/scene-home.svg') center/cover no-repeat;backdrop-filter:none}
+#lockscreen:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#02060b55,#02060bd9);pointer-events:none}
+.lock-card{position:relative;z-index:1;background:#03111de8;border:1px solid #48d6d44a;box-shadow:0 25px 90px #000b,0 0 55px #0cbac42b}
+.lock-card h1{font-family:'Playfair Display',serif}.lock-mark{color:#4adbd5;text-shadow:0 0 25px #28d5d7}
+body.scene-active .scene-backdrop{opacity:.64}
+@media(max-width:900px){body{padding-left:0}.love-sidebar{position:relative;width:100%;height:auto;inset:auto;padding:12px 14px;display:block;border-right:0;border-bottom:1px solid #39cbd42b}.sidebar-brand{justify-content:center;margin-bottom:10px}.love-sidebar nav{display:flex;overflow-x:auto;gap:5px;padding-bottom:3px}.side-link{flex:0 0 auto;padding:9px 13px;font-size:11px}.side-link span{font-size:16px;width:auto}.sidebar-couple,.sidebar-footer{display:none}.app-main{padding:0 14px 48px}.topbar{height:62px}.hero{min-height:340px;padding:44px 22px}.hero:after{font-size:22px;right:3%;top:62%;opacity:.65}.hero h1{font-size:clamp(44px,12vw,68px)}.section{padding:19px 14px;margin:20px 0 26px}.section-head h2{font-size:25px}}
+@media(max-width:520px){.app-main{padding:0 10px 38px}.hero{min-height:330px;padding:36px 14px}.hero:after{font-size:18px;top:auto;bottom:20px}.hero p{max-width:85%;font-size:13px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:12px}.card img{max-height:104px;object-fit:contain}.feature-layout{grid-template-columns:1fr}.topbar .brand{font-size:14px}.status{font-size:9px;padding:6px 8px}.topbar .btn{font-size:10px;padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){.card,.feature-box,.side-link{transition:none}}
 </style>
 </head>
 <body data-user="mukku">
@@ -128,7 +170,13 @@ body.scene-locked .scene-backdrop{opacity:.52}
 <div id="lockscreen"><div class="lock-card"><div class="lock-mark">✦</div><div class="eyebrow">A place just for us</div><h1>Secret <span style="color:var(--sea)">Territory</span></h1><p class="sub" id="loginIntro">Some worlds are better when they're shared by two.<br>Enter our little secret.</p>
 <div id="authFields" class="auth-fields"><input class="field" id="authEmail" type="email" placeholder="Email address" autocomplete="username"><input class="field" id="authPassword" type="password" placeholder="Password" autocomplete="current-password"><div class="auth-actions"><button class="btn" id="signInBtn">Sign in</button><button class="btn ghost" id="signUpBtn">Create account</button></div><p class="local-hint">Private cloud login is enabled for this setup.</p></div>
 <div id="localFields"><input class="field" id="passInput" type="password" placeholder="Our passcode" autocomplete="current-password"><button class="btn" id="unlockBtn">Enter our world&nbsp; ↗</button><p class="local-hint">Local preview mode · Configure Supabase Auth for secure shared access.</p></div><p id="error"></p></div></div>
-<main>
+<aside class="love-sidebar" aria-label="Main navigation">
+  <a class="sidebar-brand" href="#"><span class="brand-heart">♡</span><span>Secret <i>Territory</i><small>JUST US. ♡</small></span></a>
+  <nav><a class="side-link current" href="#"><span>⌂</span>Home</a><a class="side-link" href="#chemistry"><span>∞</span>Our World</a><a class="side-link" href="#memories"><span>▧</span>Memories</a><a class="side-link" href="#games"><span>♧</span>Games</a><a class="side-link" href="#vault"><span>♙</span>Vault</a><a class="side-link" href="#together"><span>⋯</span>More</a></nav>
+  <div class="sidebar-couple"><div class="eyebrow">TOGETHER FOREVER ♡</div><div class="couple-profiles"><span class="profile-dot mukku-dot">M</span><b>∞</b><span class="profile-dot khushi-dot">K</span></div><div class="couple-names"><span>Mukku 💙</span><span>Khushi 💚</span></div><div class="heartbeat">⌁〰⌁♡⌁〰⌁</div></div>
+  <div class="sidebar-footer"><span>♡</span><span>FOREVER IS BETTER WITH YOU</span></div>
+</aside>
+<main class="app-main">
 <header class="topbar"><div class="brand">SECRET <span>TERRITORY</span> ✦</div><div style="display:flex;gap:8px;align-items:center"><div class="status" id="syncStatus">● Local preview</div><button class="btn ghost small" id="privacyLock">Lock now</button><button class="btn ghost small" id="accountBtn" style="display:none">Account</button></div></header>
 <section class="hero"><div class="eyebrow">Two colours · one little universe</div><h1>Our little <em>world.</em></h1><p>A little romance, a little mischief, and a thousand ways to say what's on your mind. Made for us, and only us.</p><div class="user-switch"><button id="btn-mukku" class="active">Mukku</button><button id="btn-khushi">Khushi</button></div></section>
 <nav class="quick-nav" aria-label="Explore Secret Territory"><a href="#cravings">Sweet Cravings</a><a href="#games">Play together</a><a href="#date-night">Date night</a><a href="#vault">Private Vault</a><a href="#memories">Memories</a><a href="#together">Just between us</a></nav>
