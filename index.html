@@ -72,6 +72,7 @@ textarea{width:100%;min-height:100px;resize:vertical;background:#0c090f;color:va
 <section class="section"><div class="section-head"><div><div class="eyebrow">05 — Little reminders</div><h2>Our Moments</h2></div><button class="btn ghost small" id="clearHistory">Clear history</button></div><div class="panel"><div class="history" id="history"><div class="empty">Your moments will show up here.</div></div></div></section>
 <footer class="footer">Made with a little love, for two hearts. <span style="color:var(--rose)">♥</span><br><span style="opacity:.65">Secret Territory · Our private corner</span></footer>
 </main><div class="toast" id="toast"></div>
+<script src="config.js"></script>
 <script>
 const MUKKU_NUMBER="919009691696";
 const KHUSHI_NUMBER="917981245485";
@@ -98,7 +99,7 @@ async function loadShared(){if(!SUPABASE_URL||!SUPABASE_ANON_KEY)return;try{cons
 function renderHistory(){const list=JSON.parse(localStorage.getItem("st-history")||"[]");const box=$("history");box.innerHTML="";if(!list.length){box.innerHTML='<div class="empty">Your moments will show up here.</div>';return;}list.slice(0,30).forEach(item=>{const row=document.createElement("div");row.className="history-item";const label=document.createElement("span");label.textContent=(item.user==="mukku"?"Mukku":"Khushi")+" · "+item.action;const time=document.createElement("span");time.textContent=new Date(item.time).toLocaleString([], {month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});row.append(label,time);box.append(row);});}
 document.querySelectorAll(".card[data-task]").forEach(card=>card.addEventListener("click",()=>{const task=card.dataset.task;const msg=card.dataset.message;saveHistory(task);openWhatsApp(msg);}));
 $("secretUnlock").addEventListener("click",()=>{if($("secretPass").value===VAULT_PASSWORD){vaultOpen=true;$("secretContent").classList.add("open");$("secretPass").style.display="none";$("secretUnlock").style.display="none";toast("The Private Vault is open ✦");}else toast("That isn't the vault code.");});
-$("randomDare").addEventListener("click",()=>{const cards=[...document.querySelectorAll('.section:nth-of-type(3) .card')];const card=cards[Math.floor(Math.random()*cards.length)];if(card){card.scrollIntoView({behavior:"smooth",block:"center"});card.animate([{transform:"scale(1)"},{transform:"scale(1.04)"},{transform:"scale(1)"}],{duration:550});toast("Your surprise: "+card.querySelector("strong").textContent);}});
+$("randomDare").addEventListener("click",()=>{const cards=[...document.querySelectorAll('.section')[2]?.querySelectorAll('.card') || []];const card=cards[Math.floor(Math.random()*cards.length)];if(card){card.scrollIntoView({behavior:"smooth",block:"center"});card.animate([{transform:"scale(1)"},{transform:"scale(1.04)"},{transform:"scale(1)"}],{duration:550});toast("Your surprise: "+card.querySelector("strong").textContent);}});
 $("sendNote").addEventListener("click",()=>{const note=$("loveNote").value.trim();if(!note){toast("Write a little note first 💗");return;}saveHistory("Love note");openWhatsApp("A little note from me 💌\n\n"+note);});
 $("clearHistory").addEventListener("click",()=>{localStorage.removeItem("st-history");renderHistory();toast("This device's history was cleared.");});
 renderHistory();loadShared();
