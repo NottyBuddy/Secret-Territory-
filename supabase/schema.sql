@@ -126,3 +126,24 @@ create policy "Couple members can delete scrapbook photos"
         and cm.user_id = auth.uid()
     )
   );
+
+-- Presence is private and limited to authenticated members of the matching couple.
+drop policy if exists "Couple members can use their own presence channel" on realtime.messages;
+create policy "Couple members can use their own presence channel"
+  on realtime.messages for all to authenticated
+  using (
+    extension = 'presence'
+    and exists (
+      select 1 from public.couple_members cm
+      where cm.user_id = auth.uid()
+        and realtime.topic() = 'st-presence-' || cm.couple_id::text
+    )
+  )
+  with check (
+    extension = 'presence'
+    and exists (
+      select 1 from public.couple_members cm
+      where cm.user_id = auth.uid()
+        and realtime.topic() = 'st-presence-' || cm.couple_id::text
+    )
+  );
