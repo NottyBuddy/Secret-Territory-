@@ -181,10 +181,21 @@ body.scene-active .scene-backdrop,body.scene-locked .scene-backdrop{opacity:.9!i
 .side-link.active,.side-link[aria-current="page"]{background:linear-gradient(110deg,#84283d55,#24465a40)!important;border-color:#d45a735c!important}
 h1,h2,h3{ text-shadow:0 2px 24px #0008}
 @media(max-width:900px){.scene-backdrop{background-position:56% center!important;opacity:.88!important}#lockscreen{background-position:56% center!important}.section:before{opacity:.23!important}}
+
+/* One shared cinematic video across login + every page */
+.scene-backdrop{position:fixed!important;inset:0!important;z-index:0!important;overflow:hidden!important;opacity:1!important;background:#100d10 url('assets/scene-home.svg') center/cover no-repeat!important;filter:none!important}
+.site-background-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 46%;opacity:.88;filter:brightness(.94) saturate(1.08) contrast(1.04)}
+.scene-backdrop:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#10090b9c 0%,#130b0c50 48%,#0b0c128c 100%),linear-gradient(180deg,#09070b35 0%,#10090b0b 42%,#10090b82 100%)!important}
+body.scene-active .scene-backdrop,body.scene-locked .scene-backdrop{opacity:1!important}
+#lockscreen{background:transparent!important;isolation:isolate}
+#lockscreen:before{z-index:-1;background:linear-gradient(90deg,#10090b5c,#130b0c30 50%,#0b0c125c),linear-gradient(180deg,#10090b20,#10090b70)!important}
+.section:before{background-image:none!important;opacity:0!important}
+@media(max-width:720px){.site-background-video{object-position:54% center;opacity:.84}.scene-backdrop:after{background:linear-gradient(90deg,#10090b99,#130b0c50 50%,#0b0c1290),linear-gradient(180deg,#09070b35,#10090b8c)!important}}
+@media(prefers-reduced-motion:reduce){.site-background-video{display:none}.scene-backdrop{background-image:linear-gradient(90deg,#10090bc0,#130b0c85,#0b0c12c0),url('assets/scene-home.svg')!important}}
 </style>
 </head>
 <body data-user="mukku">
-<div class="scene-backdrop" id="sceneBackdrop" aria-hidden="true"></div><div class="ambient"></div><div class="ambient two"></div>
+<div class="scene-backdrop" id="sceneBackdrop" aria-hidden="true"><video id="siteBackgroundVideo" class="site-background-video" autoplay muted loop playsinline preload="metadata" poster="assets/scene-home.svg"><source src="https://raw.githubusercontent.com/NottyBuddy/Secret-Territory-/main/couple-bg.mp4" type="video/mp4"></video></div><div class="ambient"></div><div class="ambient two"></div>
 <div id="lockscreen"><div class="lock-card"><div class="lock-mark">✦</div><div class="eyebrow">A place just for us</div><h1>Secret <span style="color:var(--sea)">Territory</span></h1><p class="sub" id="loginIntro">Some worlds are better when they're shared by two.<br>Enter our little secret.</p>
 <div id="authFields" class="auth-fields"><input class="field" id="authEmail" type="email" placeholder="Email address" autocomplete="username"><input class="field" id="authPassword" type="password" placeholder="Password" autocomplete="current-password"><div class="auth-actions"><button class="btn" id="signInBtn">Sign in</button><button class="btn ghost" id="signUpBtn">Create account</button></div><p class="local-hint">Private cloud login is enabled for this setup.</p></div>
 <div id="localFields"><input class="field" id="passInput" type="password" placeholder="Our passcode" autocomplete="current-password"><button class="btn" id="unlockBtn">Enter our world&nbsp; ↗</button><p class="local-hint">Local preview mode · Configure Supabase Auth for secure shared access.</p></div><p id="error"></p></div></div>
