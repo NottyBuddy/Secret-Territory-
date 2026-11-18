@@ -14,6 +14,10 @@ alter table public.couple_members drop constraint if exists couple_members_displ
 alter table public.couple_members
   add constraint couple_members_display_name_check check (display_name in ('Mukku','Khushi'));
 
+alter table public.couple_members drop constraint if exists couple_members_couple_id_display_name_key;
+alter table public.couple_members
+  add constraint couple_members_couple_id_display_name_key unique (couple_id, display_name);
+
 create table if not exists public.shared_entries (
   id uuid primary key default gen_random_uuid(),
   couple_id uuid not null,
