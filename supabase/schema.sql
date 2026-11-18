@@ -10,6 +10,10 @@ create table if not exists public.couple_members (
   primary key (couple_id, user_id)
 );
 
+alter table public.couple_members drop constraint if exists couple_members_display_name_check;
+alter table public.couple_members
+  add constraint couple_members_display_name_check check (display_name in ('Mukku','Khushi'));
+
 create table if not exists public.shared_entries (
   id uuid primary key default gen_random_uuid(),
   couple_id uuid not null,
