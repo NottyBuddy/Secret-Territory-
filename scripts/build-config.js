@@ -17,5 +17,5 @@ if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
 }
 
 const config = { url: url.replace(/\/$/, ''), anonKey, coupleId };
-fs.writeFileSync('config.js', 'window.SECRET_TERRITORY_CONFIG = ' + JSON.stringify(config) + ';\n', { encoding: 'utf8', mode: 0o600 });
+fs.writeFileSync('config.js', 'window.SECRET_TERRITORY_CONFIG = ' + JSON.stringify(config) + ';\n', { encoding: 'utf8', mode: 0o644 });
 console.log('Generated config.js for the static site build. The publishable/anon key is intended for browser use; RLS must remain enabled.');
