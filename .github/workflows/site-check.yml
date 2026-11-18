@@ -22,5 +22,7 @@ jobs:
           node-version: "22"
       - name: Check HTML, accessibility and security invariants
         run: python scripts/check_site.py
-      - name: Parse inline JavaScript
-        run: node --check /tmp/secret-territory-inline.js
+      - name: Parse inline JavaScript and config builder
+        run: |
+          node --check /tmp/secret-territory-inline.js
+          node --check scripts/build-config.js
