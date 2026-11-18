@@ -5,10 +5,18 @@
 create table if not exists public.couple_members (
   couple_id uuid not null,
   user_id uuid not null references auth.users(id) on delete cascade,
-  display_name text not null,
+  display_name text not null check (display_name in ('Mukku','Khushi')),
   created_at timestamptz not null default now(),
   primary key (couple_id, user_id)
 );
+
+alter table public.couple_members drop constraint if exists couple_members_display_name_check;
+alter table public.couple_members
+  add constraint couple_members_display_name_check check (display_name in ('Mukku','Khushi'));
+
+alter table public.couple_members drop constraint if exists couple_members_couple_id_display_name_key;
+alter table public.couple_members
+  add constraint couple_members_couple_id_display_name_key unique (couple_id, display_name);
 
 create table if not exists public.shared_entries (
   id uuid primary key default gen_random_uuid(),
@@ -20,7 +28,18 @@ create table if not exists public.shared_entries (
 );
 
 create index if not exists shared_entries_couple_created_idx
-  on public.shared_entries (couple_id, created_at desc);
+  on public.shared_entries (couple_id, created_at desc, id desc);
+
+create index if not exists couple_members_user_couple_idx
+  on public.couple_members (user_id, couple_id);
+
+-- Repair legacy display attribution from the authenticated creator, not client payload.
+update public.shared_entries se
+set payload = jsonb_set(coalesce(se.payload, '{}'::jsonb), '{by}', to_jsonb(cm.display_name), true)
+from public.couple_members cm
+where se.couple_id = cm.couple_id
+  and se.created_by = cm.user_id
+  and coalesce(se.payload->>'by', '') <> cm.display_name;
 
 alter table public.couple_members enable row level security;
 alter table public.shared_entries enable row level security;
@@ -44,10 +63,12 @@ create policy "Couple members can add their own entries"
   on public.shared_entries for insert to authenticated
   with check (
     created_by = auth.uid()
+    and entry_type in ('moment','quiz','this-or-that','mood','mission','date','surprise','memory','letter','open-when','chat','chat-reaction','scrapbook','countdown')
     and exists (
       select 1 from public.couple_members cm
       where cm.couple_id = shared_entries.couple_id
         and cm.user_id = auth.uid()
+        and lower(cm.display_name) = lower(coalesce(shared_entries.payload->>'by', ''))
     )
   );
 
