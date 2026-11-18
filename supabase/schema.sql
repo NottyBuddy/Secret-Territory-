@@ -5,7 +5,7 @@
 create table if not exists public.couple_members (
   couple_id uuid not null,
   user_id uuid not null references auth.users(id) on delete cascade,
-  display_name text not null,
+  display_name text not null check (display_name in ('Mukku','Khushi')),
   created_at timestamptz not null default now(),
   primary key (couple_id, user_id)
 );
@@ -20,7 +20,10 @@ create table if not exists public.shared_entries (
 );
 
 create index if not exists shared_entries_couple_created_idx
-  on public.shared_entries (couple_id, created_at desc);
+  on public.shared_entries (couple_id, created_at desc, id desc);
+
+create index if not exists couple_members_user_couple_idx
+  on public.couple_members (user_id, couple_id);
 
 alter table public.couple_members enable row level security;
 alter table public.shared_entries enable row level security;
@@ -44,10 +47,12 @@ create policy "Couple members can add their own entries"
   on public.shared_entries for insert to authenticated
   with check (
     created_by = auth.uid()
+    and entry_type in ('moment','quiz','this-or-that','mood','mission','date','surprise','memory','letter','open-when','chat','chat-reaction','scrapbook')
     and exists (
       select 1 from public.couple_members cm
       where cm.couple_id = shared_entries.couple_id
         and cm.user_id = auth.uid()
+        and lower(cm.display_name) = lower(coalesce(shared_entries.payload->>'by', ''))
     )
   );
 
