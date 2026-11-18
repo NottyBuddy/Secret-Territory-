@@ -18,14 +18,10 @@ A mobile-first private world for Mukku & Khushi, built on a dark romantic palett
 - Mukku / Khushi profile switch and recent activity history
 
 ## WhatsApp
-The destination numbers are configured in the inline script in `index.html`:
-- `targetNumber()` maps Mukku to Khushi and Khushi to Mukku.
-- Numbers must be full international digits (India country code 91; no +, spaces or leading 0).
-- The site opens a pre-filled draft; the user still presses Send in WhatsApp.
-- Android may show an account/app chooser when both WhatsApp and an App Clone are installed. The user can select the clone and choose Always if Android offers it. A website cannot reliably force Vivo's cloned-app package.
+The site opens the generic WhatsApp recipient chooser with a pre-filled message. It does not embed recipient phone numbers or promise automatic Mukku/Khushi routing. The user chooses the recipient and sends the message in WhatsApp. Android decides which WhatsApp installation handles the link; a website cannot force Vivo's cloned-app package. If a browser blocks the new tab, the site stays open and asks the user to allow pop-ups before retrying.
 
-## Local preview
-If `config.js` is absent or incomplete, the site runs in local preview mode with the existing convenience passcode. Local preview is not secure authentication; a front-end passcode can be discovered from the public source. Do not treat this mode as private cloud access.
+## Authentication and privacy
+There is no client-side passcode or local-preview unlock. The site remains locked until Supabase Auth is configured and an authenticated user is found in the configured couple's membership rows. The Private Vault is part of that authenticated area, not a second client-side password gate.
 
 ## Secure shared cloud setup (Supabase)
 
@@ -52,6 +48,6 @@ Once configured, moments, quiz picks, This or That picks, mood selections, missi
 ## Deployment and safety notes
 - GitHub Pages can serve the static site from the repository root. Keep the original PNG assets beside `index.html`.
 - `config.js` is git-ignored. Do not commit it unless you intentionally choose to publish the public Supabase URL, publishable key and couple UUID; never publish service credentials.
-- Secret Vault and Surprise Box codes in a static client are playful unlocks, not security controls.
+- There are no client-side passcodes. The Vault is available only after Supabase Auth succeeds; the Surprise Box reveals a random prompt rather than validating a public code.
 - Open When dates control the in-app reveal UI; because the shared-entry database serves both approved members, treat future-dated letter text as visible to either authenticated member through the underlying data. It is a thoughtful reveal, not cryptographic time-locking.
 - Test login, both accounts, RLS, storage policies, live updates, WhatsApp chooser, scrapbook uploads, memory backup/restore and mobile layout before treating the site as production-ready.
